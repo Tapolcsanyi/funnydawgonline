@@ -1,12 +1,29 @@
+function initFavicon() {
+  const root = document.body.dataset.siteRoot || "";
+  const base = root ? `${root}/` : "";
+  const href = `${base}funnydawgonline-icon.png`;
+
+  let link = document.querySelector('link[rel="icon"]');
+  if (!link) {
+    link = document.createElement("link");
+    link.rel = "icon";
+    document.head.appendChild(link);
+  }
+
+  link.type = "image/png";
+  link.href = href;
+}
+
 function initNav() {
   const mount = document.getElementById("site-nav");
   if (!mount) return;
 
   const root = document.body.dataset.siteRoot || "";
   const base = root ? `${root}/` : "";
+  const homeHref = root ? `${root}/` : "./";
 
   const links = [
-    { href: `${base}index.html`, label: "Home" },
+    { href: homeHref, label: "Home" },
     { href: `${base}comics/`, label: "Comics" },
     { href: `${base}art/`, label: "Art" },
   ];
@@ -25,4 +42,5 @@ function initNav() {
   mount.replaceChildren(nav);
 }
 
+initFavicon();
 initNav();
