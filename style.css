@@ -1,0 +1,15 @@
+body {
+    background: #ffeef8;
+    color: #222;
+    font-family: Verdana, sans-serif;
+    margin: 0;
+    padding: 20px;
+  }
+  
+  .box {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    border: 3px solid #ff66aa;
+    padding: 20px;
+  }
