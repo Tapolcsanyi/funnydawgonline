@@ -2,31 +2,30 @@ async function loadComicsList() {
   const list = document.getElementById("comics-list");
   if (!list) return;
 
-  const root = document.body.dataset.siteRoot || "";
-  const dataPath = `${root ? `${root}/` : ""}data/comics.json`;
-
   try {
-    const response = await fetch(dataPath);
-    if (!response.ok) throw new Error(`HTTP ${response.status}`);
-    const data = await response.json();
-    const comics = data.comics ?? [];
+    const db = await ComicsDb.loadComicsDb();
+    const seriesMap = db.series ?? {};
+    const ids = ComicsDb.sortedKeys(seriesMap);
 
-    if (comics.length === 0) {
+    if (ids.length === 0) {
       list.innerHTML = "<li>No comics yet.</li>";
       return;
     }
 
     list.replaceChildren();
-    for (const comic of comics) {
+    for (const seriesId of ids) {
+      const series = seriesMap[seriesId];
+      const volumeCount = Object.keys(series.volumes ?? {}).length;
+
       const li = document.createElement("li");
       const a = document.createElement("a");
-      a.href = comic.url;
-      a.textContent = comic.title;
+      a.href = series.slug ? `${series.slug}/` : `series/${seriesId}/`;
+      a.textContent = series.title;
       li.appendChild(a);
 
       const meta = document.createElement("span");
       meta.className = "catalog-meta";
-      meta.textContent = ` — ${comic.artistName}`;
+      meta.textContent = ` — ${series.artistName} (${volumeCount} volume${volumeCount === 1 ? "" : "s"})`;
       li.appendChild(meta);
 
       list.appendChild(li);

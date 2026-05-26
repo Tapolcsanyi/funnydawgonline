@@ -1,4 +1,5 @@
 /* Frutiger Aero Y2K + Sweet Bro / early-web blog chaos */
+@import url("fonts.css");
 
 :root {
   --aero-sky: #6ec8e8;
@@ -11,6 +12,9 @@
   --hot-pink: #ff33aa;
   --ridge-light: #f0fbff;
   --ridge-dark: #5eb0d8;
+  --font-comic: "Comic Neue", "Comic Sans MS", "Comic Sans", "Chalkboard SE",
+    "Arial Rounded MT Bold", sans-serif;
+  --font-body: Tahoma, "MS Sans Serif", Geneva, sans-serif;
 }
 
 * {
@@ -52,7 +56,7 @@ body {
   min-height: 100vh;
   padding: 20px 12px 40px;
   color: #1a1a2e;
-  font-family: Tahoma, "MS Sans Serif", Geneva, sans-serif;
+  font-family: var(--font-body);
   font-size: 14px;
   line-height: 1.4;
   background-color: #5eb8e8;
@@ -137,7 +141,7 @@ body::after {
   display: block;
   margin: 0 0 10px;
   padding: 4px 8px;
-  font-family: "Comic Sans MS", "Comic Sans", cursive;
+  font-family: var(--font-comic);
   font-size: 11px;
   font-weight: bold;
   text-align: center;
@@ -182,7 +186,7 @@ body::after {
 .marquee-track span {
   display: inline-block;
   padding-right: 2rem;
-  font-family: "Comic Sans MS", "Comic Sans", cursive;
+  font-family: var(--font-comic);
   font-size: 12px;
   font-weight: bold;
   color: var(--ugly-lime);
@@ -260,7 +264,7 @@ body::after {
 .clutter-widget h3 {
   margin: 0 0 6px;
   padding-bottom: 4px;
-  font-family: "Comic Sans MS", "Comic Sans", cursive;
+  font-family: var(--font-comic);
   font-size: 11px;
   text-transform: uppercase;
   color: #cc0000;
@@ -295,7 +299,7 @@ body::after {
 
 .clutter-badge {
   padding: 8px;
-  font-family: "Comic Sans MS", "Comic Sans", cursive;
+  font-family: var(--font-comic);
   font-size: 9px;
   font-weight: bold;
   line-height: 1.3;
@@ -314,7 +318,7 @@ body::after {
 
 h1 {
   margin: 0 0 10px;
-  font-family: "Comic Sans MS", "Comic Sans", cursive;
+  font-family: var(--font-comic);
   font-size: clamp(1.4rem, 4.5vw, 1.95rem);
   font-weight: bold;
   line-height: 1.1;
@@ -450,27 +454,213 @@ a:hover {
   text-decoration: underline;
 }
 
+.media-header {
+  margin-bottom: 12px;
+}
+
+.media-header h1 {
+  margin-bottom: 6px;
+}
+
+.media-layout-label {
+  margin-top: 4px;
+  font-size: 0.85em;
+}
+
+.media-viewer {
+  display: flex;
+  gap: 12px;
+  margin: 0 0 16px;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.6);
+  border: 2px dashed var(--aero-deep);
+  border-radius: 8px;
+}
+
+.media-viewer img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border: 2px solid #fff;
+  outline: 1px solid var(--ridge-dark);
+  box-shadow: 2px 2px 6px rgba(0, 80, 140, 0.25);
+}
+
+.media-viewer--top-to-bottom {
+  flex-direction: column;
+  align-items: center;
+}
+
+.media-viewer--bottom-to-top {
+  flex-direction: column-reverse;
+  align-items: center;
+}
+
+.media-viewer--left-to-right {
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.media-viewer--left-to-right img {
+  flex: 0 1 auto;
+  max-width: min(100%, 420px);
+}
+
+.media-viewer--right-to-left {
+  flex-flow: row-reverse wrap-reverse;
+  justify-content: flex-end;
+  align-items: flex-start;
+}
+
+.media-viewer--right-to-left img {
+  flex: 0 1 auto;
+  max-width: min(100%, 420px);
+}
+
+.media-empty,
+.media-error {
+  margin: 0 0 12px;
+  font-family: var(--font-comic);
+  color: #666;
+}
+
+.media-error {
+  color: #cc0000;
+}
+
 @media (max-width: 700px) {
+  body {
+    padding: 10px 8px 24px;
+    font-size: 15px;
+    line-height: 1.45;
+    background-attachment: scroll;
+    background-image:
+      url("../funnydawgonline-icon.png"),
+      linear-gradient(180deg, #6ec8e8 0%, #9ee0f5 30%, #c8f5e8 65%, #88d4b8 100%);
+    background-size: 64px 64px, 100% 100%;
+  }
+
+  body::after {
+    display: none;
+  }
+
   body::before {
-    font-size: 12px;
-    padding: 8px 14px;
+    top: 6px;
+    left: 4px;
+    max-width: calc(100vw - 16px);
+    font-size: 11px;
+    padding: 6px 10px;
+    transform: rotate(-4deg);
+  }
+
+  .box {
+    padding: 10px 12px 14px;
+    border-width: 3px;
+    box-shadow:
+      0 0 0 2px #ff66aa,
+      0 0 0 4px #fff,
+      0 0 0 6px var(--aero-deep),
+      0 4px 16px rgba(0, 100, 160, 0.35);
+  }
+
+  .box--crowded::before {
+    font-size: 10px;
+    letter-spacing: 0.04em;
+    margin-bottom: 8px;
+  }
+
+  .marquee-track {
+    animation-duration: 40s;
   }
 
   .box-layout {
     grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .box-main {
+    padding-right: 0;
+  }
+
+  .box-stickers {
+    display: none;
   }
 
   .clutter-rail {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 6px;
+    font-size: 10px;
+  }
+
+  .clutter-widget {
+    padding: 6px;
+  }
+
+  .clutter-widget--optional {
+    display: none;
   }
 
   .clutter-badge {
     grid-column: 1 / -1;
+    padding: 6px;
+    font-size: 8px;
   }
 
-  .sticker--wow {
-    display: none;
+  .hit-counter {
+    font-size: 14px;
+    letter-spacing: 0.08em;
+    text-shadow: none;
+  }
+
+  h1 {
+    font-size: 1.35rem;
+    text-shadow:
+      1px 1px 0 var(--ugly-lime),
+      2px 2px 0 var(--hot-pink);
+  }
+
+  .title-badge {
+    display: block;
+    margin-top: 2px;
+    font-size: 0.5em;
+  }
+
+  .site-nav {
+    gap: 6px;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+  }
+
+  .site-nav a {
+    flex: 1 1 calc(33% - 6px);
+    min-width: 0;
+    padding: 8px 6px;
+    font-size: 12px;
+    text-align: center;
+  }
+
+  .category-bar {
+    gap: 4px;
+    padding: 6px;
+  }
+
+  .category-btn {
+    padding: 5px 10px;
+    font-size: 0.75rem;
+  }
+
+  .media-list {
+    padding-left: 1.1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track,
+  .blink,
+  .title-badge,
+  .sticker--yum {
+    animation: none !important;
   }
 }

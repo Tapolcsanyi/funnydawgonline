@@ -1,11 +1,124 @@
 {
-  "comics": [
+  "layouts": [
     {
-      "id": "marrventure-vol-01",
-      "title": "ts dont go anywhere",
+      "id": "top-to-bottom",
+      "label": "Top to bottom"
+    },
+    {
+      "id": "bottom-to-top",
+      "label": "Bottom to top"
+    },
+    {
+      "id": "left-to-right",
+      "label": "Left to right"
+    },
+    {
+      "id": "right-to-left",
+      "label": "Right to left"
+    }
+  ],
+  "series": {
+    "0": {
+      "title": "Marrventure",
+      "slug": "marrventure",
       "artistName": "Ian P. Hoffman",
       "artistId": null,
-      "url": "marrventure/volume-01.html"
+      "description": "Comics by Ian P. Hoffman.",
+      "volumes": {
+        "0": {
+          "title": "ts dont go anywhere",
+          "slug": "ts-dont-go-anywhere",
+          "artistName": "Ian P. Hoffman",
+          "artistId": null,
+          "layout": "top-to-bottom",
+          "images": [
+            {
+              "src": "funnydawgonline-icon.png",
+              "alt": "Page 1"
+            },
+            {
+              "src": "funnydawgonline-icon.png",
+              "alt": "Page 2"
+            },
+            {
+              "src": "funnydawgonline-icon.png",
+              "alt": "Page 3"
+            }
+          ]
+        }
+      }
+    },
+    "1": {
+      "title": "Layout demos",
+      "slug": "layout-demos",
+      "artistName": "Ian P. Hoffman",
+      "artistId": null,
+      "description": "Examples of each reading layout.",
+      "volumes": {
+        "0": {
+          "title": "Demo: Bottom to Top",
+          "slug": "bottom-to-top-demo",
+          "artistName": "Ian P. Hoffman",
+          "artistId": null,
+          "layout": "bottom-to-top",
+          "images": [
+            {
+              "src": "funnydawgonline-icon.png",
+              "alt": "Page 1 (start at bottom)"
+            },
+            {
+              "src": "funnydawgonline-icon.png",
+              "alt": "Page 2"
+            },
+            {
+              "src": "funnydawgonline-icon.png",
+              "alt": "Page 3 (top)"
+            }
+          ]
+        },
+        "1": {
+          "title": "Demo: Left to Right",
+          "slug": "left-to-right-demo",
+          "artistName": "Ian P. Hoffman",
+          "artistId": null,
+          "layout": "left-to-right",
+          "images": [
+            {
+              "src": "funnydawgonline-icon.png",
+              "alt": "Panel 1 (left)"
+            },
+            {
+              "src": "funnydawgonline-icon.png",
+              "alt": "Panel 2"
+            },
+            {
+              "src": "funnydawgonline-icon.png",
+              "alt": "Panel 3 (right)"
+            }
+          ]
+        },
+        "2": {
+          "title": "Demo: Right to Left",
+          "slug": "right-to-left-demo",
+          "artistName": "Ian P. Hoffman",
+          "artistId": null,
+          "layout": "right-to-left",
+          "images": [
+            {
+              "src": "funnydawgonline-icon.png",
+              "alt": "Panel 1 (right)"
+            },
+            {
+              "src": "funnydawgonline-icon.png",
+              "alt": "Panel 2"
+            },
+            {
+              "src": "funnydawgonline-icon.png",
+              "alt": "Panel 3 (left)"
+            }
+          ]
+        }
+      }
     }
-  ]
+  }
 }
