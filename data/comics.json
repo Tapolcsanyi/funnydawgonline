@@ -2,19 +2,43 @@
   "layouts": [
     {
       "id": "top-to-bottom",
-      "label": "Top to bottom"
+      "label": "Top to bottom",
+      "viewer": {
+        "mode": "stacked",
+        "reverseStack": false,
+        "scrollToBottomOnLoad": false,
+        "carouselRtl": false
+      }
     },
     {
       "id": "bottom-to-top",
-      "label": "Bottom to top"
+      "label": "Bottom to top",
+      "viewer": {
+        "mode": "stacked",
+        "reverseStack": true,
+        "scrollToBottomOnLoad": true,
+        "carouselRtl": false
+      }
     },
     {
       "id": "left-to-right",
-      "label": "Left to right"
+      "label": "Left to right",
+      "viewer": {
+        "mode": "carousel",
+        "reverseStack": false,
+        "scrollToBottomOnLoad": false,
+        "carouselRtl": false
+      }
     },
     {
       "id": "right-to-left",
-      "label": "Right to left"
+      "label": "Right to left",
+      "viewer": {
+        "mode": "carousel",
+        "reverseStack": false,
+        "scrollToBottomOnLoad": false,
+        "carouselRtl": true
+      }
     }
   ],
   "series": {

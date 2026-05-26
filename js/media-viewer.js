@@ -32,6 +32,7 @@ async function loadArtFromDatabase(rawId, base) {
     artistName: piece.artistName ?? "",
     layout,
     layoutLabel: layoutMeta?.label ?? layout.replace(/-/g, " "),
+    viewerConfig: ComicsDb.buildViewerConfig(layout, layoutMap),
     images: piece.images ?? [],
   };
 }
@@ -46,17 +47,35 @@ function createImageElement(image, fallbackAlt, base, eager = false) {
   return img;
 }
 
-function renderStackedViewer(viewer, data, base, reverse = false) {
-  viewer.className = `media-viewer media-viewer--stacked ${
-    reverse ? "media-viewer--bottom-to-top" : "media-viewer--top-to-bottom"
-  }`;
+function createVolumeNavLink(volume, direction) {
+  if (!volume) return null;
+  const link = document.createElement("a");
+  link.className = `volume-nav volume-nav--${direction}`;
+  link.href = volume.href;
+  link.textContent =
+    direction === "prev" ? `← Previous: ${volume.title}` : `Next: ${volume.title} →`;
+  return link;
+}
+
+function appendVolumeNav(container, data, direction) {
+  const volume = direction === "prev" ? data.prevVolume : data.nextVolume;
+  const link = createVolumeNavLink(volume, direction);
+  if (link) container.appendChild(link);
+}
+
+function renderStackedViewer(viewer, data, base, viewerConfig) {
+  viewer.className = `media-viewer media-viewer--stacked media-viewer--${viewerConfig.layoutId}`;
   viewer.replaceChildren();
 
-  const ordered = reverse ? [...data.images].reverse() : data.images;
+  appendVolumeNav(viewer, data, "prev");
+
+  const ordered = viewerConfig.reverseStack ? [...data.images].reverse() : data.images;
   for (const image of ordered) {
     const img = createImageElement(image, data.title, base);
     viewer.appendChild(img);
   }
+
+  appendVolumeNav(viewer, data, "next");
 }
 
 function scrollPageToBottom() {
@@ -117,7 +136,7 @@ function addSwipeNavigation(target, onPrev, onNext) {
   );
 }
 
-function createCarouselController(root, ordered, base, title, rightToLeft = false) {
+function createCarouselController(root, ordered, base, title, carouselRtl = false) {
   let index = 0;
   let modalOpen = false;
 
@@ -165,16 +184,30 @@ function createCarouselController(root, ordered, base, title, rightToLeft = fals
   };
 
   const goArrowLeft = () => {
-    if (rightToLeft) goNext();
+    if (carouselRtl) goNext();
     else goPrev();
   };
 
   const goArrowRight = () => {
-    if (rightToLeft) goPrev();
+    if (carouselRtl) goPrev();
     else goNext();
   };
 
+  const modalHome = { parent: modal.parentNode, next: modal.nextSibling };
+
+  const restoreModalHome = () => {
+    if (!modalHome.parent || modal.parentNode === modalHome.parent) return;
+    if (modalHome.next) {
+      modalHome.parent.insertBefore(modal, modalHome.next);
+    } else {
+      modalHome.parent.appendChild(modal);
+    }
+  };
+
   const openModal = () => {
+    if (modal.parentNode !== document.body) {
+      document.body.appendChild(modal);
+    }
     modal.hidden = false;
     modalOpen = true;
     document.body.classList.add("media-modal-open");
@@ -185,6 +218,7 @@ function createCarouselController(root, ordered, base, title, rightToLeft = fals
     modal.hidden = true;
     modalOpen = false;
     document.body.classList.remove("media-modal-open");
+    restoreModalHome();
   };
 
   prevBtn.addEventListener("click", goPrev);
@@ -253,13 +287,10 @@ function createCarouselController(root, ordered, base, title, rightToLeft = fals
   };
 }
 
-function renderCarouselViewer(viewer, data, base, rightToLeft = false) {
-  viewer.className = `media-viewer media-viewer--carousel ${
-    rightToLeft ? "media-viewer--right-to-left" : "media-viewer--left-to-right"
-  }`;
+function renderCarouselViewer(viewer, data, base, viewerConfig) {
+  viewer.className = `media-viewer media-viewer--carousel media-viewer--${viewerConfig.layoutId}`;
   viewer.replaceChildren();
 
-  // Keep array order so index 0 is the first page (rightmost in RTL reading order).
   const ordered = data.images;
   const wrap = document.createElement("div");
   wrap.className = "media-carousel-wrap";
@@ -297,9 +328,13 @@ function renderCarouselViewer(viewer, data, base, rightToLeft = false) {
       </div>
     </div>
   `;
+  appendVolumeNav(viewer, data, "prev");
   viewer.appendChild(wrap);
+  appendVolumeNav(viewer, data, "next");
 
-  if (rightToLeft) {
+  const modalEl = wrap.querySelector(".media-modal");
+  if (viewerConfig.carouselRtl) {
+    modalEl?.classList.add("media-modal--right-to-left");
     const prevText = wrap.querySelector(".media-carousel-btn--prev");
     const nextText = wrap.querySelector(".media-carousel-btn--next");
     const modalPrev = wrap.querySelector(".media-modal-btn--prev");
@@ -329,14 +364,26 @@ function renderCarouselViewer(viewer, data, base, rightToLeft = false) {
   if (activeCarouselController) {
     activeCarouselController.destroy();
   }
-  activeCarouselController = createCarouselController(wrap, ordered, base, data.title, rightToLeft);
+  activeCarouselController = createCarouselController(
+    wrap,
+    ordered,
+    base,
+    data.title,
+    viewerConfig.carouselRtl
+  );
   activeCarouselController.setImage();
 }
 
 function renderViewer(viewer, data, base) {
   if (data.images.length === 0) {
     viewer.className = "media-viewer";
-    viewer.innerHTML = "<p class='media-empty'>No pages yet.</p>";
+    viewer.replaceChildren();
+    appendVolumeNav(viewer, data, "prev");
+    const empty = document.createElement("p");
+    empty.className = "media-empty";
+    empty.textContent = "No pages yet.";
+    viewer.appendChild(empty);
+    appendVolumeNav(viewer, data, "next");
     return;
   }
 
@@ -345,20 +392,13 @@ function renderViewer(viewer, data, base) {
     activeCarouselController = null;
   }
 
-  switch (data.layout) {
-    case "left-to-right":
-      renderCarouselViewer(viewer, data, base, false);
-      break;
-    case "right-to-left":
-      renderCarouselViewer(viewer, data, base, true);
-      break;
-    case "bottom-to-top":
-      renderStackedViewer(viewer, data, base, true);
-      break;
-    case "top-to-bottom":
-    default:
-      renderStackedViewer(viewer, data, base, false);
-      break;
+  const viewerConfig =
+    data.viewerConfig ?? ComicsDb.buildViewerConfig(data.layout, ComicsDb.buildLayoutMap([]));
+
+  if (viewerConfig.mode === "carousel") {
+    renderCarouselViewer(viewer, data, base, viewerConfig);
+  } else {
+    renderStackedViewer(viewer, data, base, viewerConfig);
   }
 }
 
@@ -390,6 +430,7 @@ async function loadMediaViewer() {
       }
       const db = await ComicsDb.loadComicsDb();
       data = ComicsDb.prepareVolumeForViewer(db, ids.seriesId, ids.volumeId);
+      Object.assign(data, ComicsDb.getVolumeAdjacency(db, ids.seriesId, ids.volumeId, base));
     }
 
     document.title = `${data.title} — FUNNY DAWG ONLINE`;
@@ -408,7 +449,7 @@ async function loadMediaViewer() {
     }
 
     renderViewer(viewer, data, base);
-    if (data.layout === "bottom-to-top") {
+    if (data.viewerConfig?.scrollToBottomOnLoad) {
       requestAnimationFrame(() => scrollToBottomAfterImagesLoad(viewer));
     }
     if (errorEl) errorEl.hidden = true;

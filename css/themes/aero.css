@@ -1,0 +1,115 @@
+/* Loud — Frutiger Aero + Y2K blog chaos (original look) */
+:root {
+  --font-comic: "Comic Neue", "Comic Sans MS", "Comic Sans", "Chalkboard SE",
+    "Arial Rounded MT Bold", sans-serif;
+  --font-body: Tahoma, "MS Sans Serif", Geneva, sans-serif;
+  --font-heading: Impact, "Arial Black", sans-serif;
+
+  --aero-sky: #6ec8e8;
+  --aero-deep: #2a8fc7;
+  --aero-mint: #9ee8c8;
+  --ms-link: #0000ee;
+  --ms-visited: #551a8b;
+  --ugly-lime: #ccff00;
+  --ugly-orange: #ff9900;
+  --hot-pink: #ff33aa;
+  --ridge-light: #f0fbff;
+  --ridge-dark: #5eb0d8;
+
+  --text-primary: #1a1a2e;
+  --text-heading: #0066cc;
+  --text-heading-shadow-1: var(--ugly-lime);
+  --text-heading-shadow-2: var(--hot-pink);
+  --text-subheading: var(--ugly-orange);
+  --text-meta: #008080;
+  --text-nav: #003399;
+  --text-nav-hover: #000;
+  --text-btn: #004488;
+  --text-counter: #00aa00;
+
+  --page-bg-color: #5eb8e8;
+  --page-bg-image:
+    url("../../funnydawgonline-icon.png"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Crect width='12' height='12' fill='%23ffffff' opacity='0.12'/%3E%3Crect x='12' y='12' width='12' height='12' fill='%23ffffff' opacity='0.12'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Ccircle cx='8' cy='8' r='2' fill='%23ffffff' opacity='0.35'/%3E%3Ccircle cx='24' cy='20' r='1.5' fill='%23ffff99' opacity='0.4'/%3E%3C/svg%3E"),
+    radial-gradient(ellipse 100% 60% at 50% 0%, rgba(255, 255, 255, 0.7) 0%, transparent 50%),
+    linear-gradient(180deg, #6ec8e8 0%, #9ee0f5 30%, #c8f5e8 65%, #88d4b8 100%);
+  --page-bg-size: 56px 56px, 24px 24px, 32px 32px, 100% 100%, 100% 100%;
+  --page-bg-position: center top, center top, center top, center top, center top;
+  --page-bg-repeat: repeat, repeat, repeat, no-repeat, no-repeat;
+  --page-bg-mobile-image:
+    url("../../funnydawgonline-icon.png"),
+    linear-gradient(180deg, #6ec8e8 0%, #9ee0f5 30%, #c8f5e8 65%, #88d4b8 100%);
+  --page-bg-mobile-size: 64px 64px, 100% 100%;
+  --scanline-opacity: 0.05;
+  --construction-display: block;
+
+  --box-bg: linear-gradient(
+    165deg,
+    rgba(255, 255, 255, 0.97) 0%,
+    rgba(220, 245, 255, 0.92) 45%,
+    rgba(200, 255, 230, 0.88) 100%
+  );
+  --box-border: #fff;
+  --box-outline: var(--aero-deep);
+  --box-shadow-outer: #ff66aa;
+  --box-shadow-glow: rgba(0, 140, 200, 0.5);
+  --box-banner-bg: repeating-linear-gradient(90deg, #ffff99, #ffff99 12px, #ffccff 12px, #ffccff 24px);
+  --box-banner-text: #003366;
+
+  --marquee-bg: #000;
+  --marquee-text: var(--ugly-lime);
+  --marquee-border: var(--ugly-lime);
+  --marquee-footer-border: var(--hot-pink);
+
+  --nav-bg: linear-gradient(180deg, #fff 0%, #d4eeff 45%, #7ec0e8 100%);
+  --nav-bg-hover: linear-gradient(180deg, #ffffcc 0%, #ffcc00 50%, #ff9900 100%);
+  --nav-border-light: var(--ridge-light);
+  --nav-border-dark: var(--ridge-dark);
+  --nav-shadow: rgba(0, 80, 140, 0.35);
+
+  --btn-bg: linear-gradient(180deg, #fff 0%, #aae8ff 55%, #5ec8f0 100%);
+  --btn-border-light: #fff;
+  --btn-border-dark: #3a9fd4;
+  --btn-active-bg: linear-gradient(180deg, #7ee8ff 0%, #00a8e8 40%, #0077bb 100%);
+  --btn-active-text: #fff;
+
+  --category-bar-bg: linear-gradient(90deg, rgba(180, 230, 255, 0.6), rgba(200, 255, 220, 0.6));
+  --link-hover-bg: rgba(255, 255, 0, 0.5);
+  --link-hover-color: var(--hot-pink);
+
+  --rule-gradient: repeating-linear-gradient(
+    90deg,
+    var(--hot-pink),
+    var(--hot-pink) 8px,
+    var(--ugly-lime) 8px,
+    var(--ugly-lime) 16px,
+    var(--aero-deep) 16px,
+    var(--aero-deep) 24px
+  );
+
+  --clutter-bg: #ffffcc;
+  --clutter-heading: #cc0000;
+  --clutter-border: #ff9900;
+  --counter-bg: #000;
+  --counter-glow: #00ff00;
+
+  --viewer-border: #7ec0e8;
+  --viewer-panel-bg: rgba(255, 255, 255, 0.82);
+  --viewer-frame-bg: #111;
+  --viewer-image-outline: #5eb0d8;
+  --thumb-active-border: #ffcc00;
+  --thumb-active-glow: #ff66aa;
+
+  --viewer-btn-bg: linear-gradient(180deg, #fff 0%, #aae8ff 55%, #5ec8f0 100%);
+  --viewer-btn-text: #004488;
+  --viewer-btn-border-light: #fff;
+  --viewer-btn-border-dark: #3a9fd4;
+  --viewer-status-text: #005577;
+  --modal-overlay: rgba(0, 0, 0, 0.86);
+  --modal-toolbar-text: #fff;
+  --modal-frame-bg: #000;
+
+  --theme-toggle-bg: linear-gradient(180deg, #fff 0%, #d4eeff 50%, #9ed8f5 100%);
+  --theme-toggle-text: #004488;
+}

@@ -24,6 +24,47 @@ const ComicsDb = (function () {
     return first ?? "top-to-bottom";
   }
 
+  const DEFAULT_VIEWER_BY_LAYOUT = {
+    "top-to-bottom": {
+      mode: "stacked",
+      reverseStack: false,
+      scrollToBottomOnLoad: false,
+      carouselRtl: false,
+    },
+    "bottom-to-top": {
+      mode: "stacked",
+      reverseStack: true,
+      scrollToBottomOnLoad: true,
+      carouselRtl: false,
+    },
+    "left-to-right": {
+      mode: "carousel",
+      reverseStack: false,
+      scrollToBottomOnLoad: false,
+      carouselRtl: false,
+    },
+    "right-to-left": {
+      mode: "carousel",
+      reverseStack: false,
+      scrollToBottomOnLoad: false,
+      carouselRtl: true,
+    },
+  };
+
+  function buildViewerConfig(layoutId, layoutMap) {
+    const layoutMeta = layoutMap.get(layoutId);
+    const defaults =
+      DEFAULT_VIEWER_BY_LAYOUT[layoutId] ?? DEFAULT_VIEWER_BY_LAYOUT["top-to-bottom"];
+    const fromDb = layoutMeta?.viewer ?? {};
+    return {
+      layoutId,
+      mode: fromDb.mode ?? defaults.mode,
+      reverseStack: fromDb.reverseStack ?? defaults.reverseStack,
+      scrollToBottomOnLoad: fromDb.scrollToBottomOnLoad ?? defaults.scrollToBottomOnLoad,
+      carouselRtl: fromDb.carouselRtl ?? defaults.carouselRtl,
+    };
+  }
+
   async function loadComicsDb() {
     if (cache) return cache;
     const base = getSiteBase();
@@ -56,6 +97,42 @@ const ComicsDb = (function () {
     return "";
   }
 
+  function buildVolumeHref(base, series, seriesId, volumeId, volume) {
+    const root = base || "";
+    if (series.slug && volume.slug) {
+      return `${root}comics/${series.slug}/${volume.slug}/`;
+    }
+    return `${root}comics/series/${seriesId}/volume/${volumeId}/`;
+  }
+
+  function getVolumeAdjacency(db, seriesId, volumeId, base = "") {
+    const series = getSeries(db, seriesId);
+    if (!series?.volumes) {
+      return { prevVolume: null, nextVolume: null };
+    }
+
+    const volumeIds = sortedKeys(series.volumes);
+    const currentId = String(volumeId);
+    const index = volumeIds.indexOf(currentId);
+    if (index === -1) {
+      return { prevVolume: null, nextVolume: null };
+    }
+
+    const toNav = (id) => {
+      const volume = series.volumes[id];
+      return {
+        volumeId: id,
+        title: volume.title,
+        href: buildVolumeHref(base, series, seriesId, id, volume),
+      };
+    };
+
+    return {
+      prevVolume: index > 0 ? toNav(volumeIds[index - 1]) : null,
+      nextVolume: index < volumeIds.length - 1 ? toNav(volumeIds[index + 1]) : null,
+    };
+  }
+
   function prepareVolumeForViewer(db, seriesId, volumeId) {
     const entry = getVolume(db, seriesId, volumeId);
     if (!entry) {
@@ -75,6 +152,7 @@ const ComicsDb = (function () {
       artistId: entry.volume.artistId ?? entry.series.artistId ?? null,
       layout,
       layoutLabel: layoutMeta?.label ?? layout.replace(/-/g, " "),
+      viewerConfig: buildViewerConfig(layout, layoutMap),
       images: entry.volume.images ?? [],
     };
   }
@@ -99,8 +177,11 @@ const ComicsDb = (function () {
     loadComicsDb,
     sortedKeys,
     buildLayoutMap,
+    buildViewerConfig,
     getSeries,
     getVolume,
+    buildVolumeHref,
+    getVolumeAdjacency,
     prepareVolumeForViewer,
     readSeriesVolumeFromPath,
     readSeriesFromPath,

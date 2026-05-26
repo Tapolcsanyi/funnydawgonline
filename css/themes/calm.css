@@ -1,0 +1,398 @@
+/* Calm — Frutiger Aero (background image, glass UI, Segoe-style type) */
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&display=swap");
+
+:root {
+  --font-comic: "Source Sans 3", "Segoe UI", Candara, Calibri, system-ui, sans-serif;
+  --font-body: "Source Sans 3", "Segoe UI", "Segoe UI Variable", Candara, Calibri, system-ui,
+    sans-serif;
+  --font-heading: "Source Sans 3", "Segoe UI", Candara, Calibri, system-ui, sans-serif;
+
+  --aero-sky: #7ec8e8;
+  --aero-deep: #2a8fc7;
+  --aero-mint: #8edcc4;
+  --ms-link: #1a6fa8;
+  --ms-visited: #5a7a9a;
+  --ugly-lime: #a8e6c8;
+  --ugly-orange: #7eb8d4;
+  --hot-pink: #6eb8d8;
+  --ridge-light: rgba(255, 255, 255, 0.55);
+  --ridge-dark: rgba(60, 140, 200, 0.45);
+
+  --text-primary: #1e3d52;
+  --text-heading: #145a82;
+  --text-heading-shadow-1: rgba(255, 255, 255, 0.85);
+  --text-heading-shadow-2: rgba(90, 170, 220, 0.45);
+  --text-subheading: #2a6a90;
+  --text-meta: #4a7a98;
+  --text-nav: #f4fbff;
+  --text-nav-hover: #fff;
+  --text-btn: #f4fbff;
+  --text-counter: #b8f0d8;
+
+  --page-bg-color: #3a7a9a;
+  --page-bg-image:
+    linear-gradient(rgba(12, 40, 65, 0.11), rgba(8, 35, 58, 0.16)),
+    url("../../frutiger-aero-background.png");
+  --page-bg-size: cover, cover;
+  --page-bg-position: center center, center center;
+  --page-bg-repeat: no-repeat, no-repeat;
+  --page-bg-mobile-image:
+    linear-gradient(rgba(12, 40, 65, 0.12), rgba(8, 35, 58, 0.17)),
+    url("../../frutiger-aero-background.png");
+  --page-bg-mobile-size: cover, cover;
+  --scanline-opacity: 0;
+  --construction-display: none;
+
+  --box-bg: linear-gradient(
+    165deg,
+    rgba(255, 255, 255, 0.78) 0%,
+    rgba(220, 245, 255, 0.72) 45%,
+    rgba(200, 240, 228, 0.7) 100%
+  );
+  --box-border: rgba(255, 255, 255, 0.75);
+  --box-outline: rgba(120, 190, 230, 0.55);
+  --box-shadow-outer: rgba(80, 160, 220, 0.35);
+  --box-shadow-glow: rgba(40, 120, 180, 0.25);
+  --box-banner-bg: linear-gradient(
+    90deg,
+    rgba(180, 220, 250, 0.75),
+    rgba(160, 230, 200, 0.7)
+  );
+  --box-banner-text: #1a4a68;
+
+  --marquee-bg: rgba(30, 90, 130, 0.35);
+  --marquee-text: #e8f4fc;
+  --marquee-border: rgba(120, 190, 230, 0.45);
+  --marquee-footer-border: rgba(120, 190, 230, 0.45);
+
+  --nav-bg: rgba(70, 150, 215, 0.28);
+  --nav-bg-hover: rgba(90, 170, 230, 0.42);
+  --nav-border-light: rgba(255, 255, 255, 0.5);
+  --nav-border-dark: rgba(50, 120, 180, 0.4);
+  --nav-shadow: rgba(20, 80, 130, 0.25);
+
+  --btn-bg: rgba(65, 145, 210, 0.3);
+  --btn-border-light: rgba(255, 255, 255, 0.45);
+  --btn-border-dark: rgba(40, 110, 170, 0.45);
+  --btn-active-bg: rgba(50, 130, 200, 0.55);
+  --btn-active-text: #fff;
+
+  --category-bar-bg: rgba(60, 140, 200, 0.28);
+  --link-hover-bg: rgba(100, 180, 230, 0.35);
+  --link-hover-color: #fff;
+
+  --rule-gradient: linear-gradient(
+    90deg,
+    transparent,
+    rgba(120, 200, 240, 0.35) 20%,
+    rgba(140, 220, 190, 0.4) 50%,
+    rgba(120, 200, 240, 0.35) 80%,
+    transparent
+  );
+
+  --clutter-bg: rgba(240, 250, 255, 0.72);
+  --clutter-heading: #1a5a82;
+  --clutter-border: rgba(100, 180, 220, 0.4);
+  --counter-bg: rgba(20, 70, 110, 0.35);
+  --counter-glow: transparent;
+
+  --viewer-border: #7ec0e8;
+  --viewer-panel-bg: rgba(255, 255, 255, 0.82);
+  --viewer-frame-bg: #111;
+  --viewer-image-outline: #5eb0d8;
+  --thumb-active-border: #ffcc00;
+  --thumb-active-glow: #ff66aa;
+
+  --viewer-btn-bg: linear-gradient(180deg, #fff 0%, #aae8ff 55%, #5ec8f0 100%);
+  --viewer-btn-text: #004488;
+  --viewer-btn-border-light: #fff;
+  --viewer-btn-border-dark: #3a9fd4;
+  --viewer-status-text: #005577;
+  --modal-overlay: rgba(0, 0, 0, 0.86);
+  --modal-toolbar-text: #fff;
+  --modal-frame-bg: #000;
+
+  --theme-toggle-bg: rgba(70, 150, 215, 0.28);
+  --theme-toggle-text: #f0f8ff;
+
+  --glass-blur: blur(12px) saturate(1.15);
+}
+
+html[data-theme="calm"] body {
+  position: relative;
+  background-repeat: var(--page-bg-repeat);
+  background-position: var(--page-bg-position);
+}
+
+html[data-theme="calm"] body::after {
+  opacity: 0;
+}
+
+html[data-theme="calm"] body::before {
+  display: none;
+}
+
+html[data-theme="calm"] .box {
+  position: relative;
+  z-index: 1;
+}
+
+html[data-theme="calm"] .site-nav a,
+html[data-theme="calm"] .theme-toggle,
+html[data-theme="calm"] .category-btn,
+html[data-theme="calm"] .volume-nav {
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  box-shadow:
+    0 2px 10px rgba(20, 80, 130, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+html[data-theme="calm"] .site-nav a:hover,
+html[data-theme="calm"] .theme-toggle:hover,
+html[data-theme="calm"] .category-btn:hover,
+html[data-theme="calm"] .volume-nav:hover {
+  background: var(--nav-bg-hover);
+}
+
+/* Comic viewers — same layout/controls as Loud (all four reading orders) */
+html[data-theme="calm"] .media-viewer--top-to-bottom,
+html[data-theme="calm"] .media-viewer--bottom-to-top,
+html[data-theme="calm"] .media-viewer--left-to-right,
+html[data-theme="calm"] .media-viewer--right-to-left {
+  --viewer-border: #7ec0e8;
+  --viewer-panel-bg: rgba(255, 255, 255, 0.82);
+  --viewer-frame-bg: #111;
+  --viewer-image-outline: #5eb0d8;
+  --viewer-btn-bg: linear-gradient(180deg, #fff 0%, #aae8ff 55%, #5ec8f0 100%);
+  --viewer-btn-text: #004488;
+  --viewer-btn-border-light: #fff;
+  --viewer-btn-border-dark: #3a9fd4;
+  --viewer-status-text: #005577;
+  --thumb-active-border: #ffcc00;
+  --thumb-active-glow: #ff66aa;
+}
+
+html[data-theme="calm"] .media-viewer--stacked {
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+html[data-theme="calm"] .media-viewer--stacked img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  box-shadow: none;
+}
+
+html[data-theme="calm"] .media-viewer--carousel {
+  padding: 12px;
+  border: 2px solid var(--viewer-border);
+  background: var(--viewer-panel-bg);
+}
+
+html[data-theme="calm"] .media-viewer .media-carousel-wrap {
+  position: relative;
+}
+
+html[data-theme="calm"] .media-viewer .media-carousel-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+html[data-theme="calm"] .media-viewer--right-to-left .media-carousel-controls {
+  flex-direction: row-reverse;
+}
+
+html[data-theme="calm"] .media-viewer .media-carousel-right-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+html[data-theme="calm"] .media-viewer--right-to-left .media-carousel-right-actions {
+  flex-direction: row-reverse;
+}
+
+html[data-theme="calm"] .media-viewer .media-carousel-btn {
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  opacity: 1;
+  box-shadow: none;
+}
+
+html[data-theme="calm"] .media-viewer .media-carousel-btn:hover:not(:disabled) {
+  color: #000;
+  background: linear-gradient(180deg, #ffffcc 0%, #ffcc00 50%, #ff9900 100%);
+}
+
+html[data-theme="calm"] .media-viewer--right-to-left .media-tap-zone--prev {
+  left: auto;
+  right: 0;
+}
+
+html[data-theme="calm"] .media-viewer--right-to-left .media-tap-zone--next {
+  right: auto;
+  left: 0;
+}
+
+html[data-theme="calm"] .media-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: grid;
+  place-items: center;
+  padding: 14px;
+  box-sizing: border-box;
+}
+
+html[data-theme="calm"] .media-modal[hidden] {
+  display: none;
+}
+
+html[data-theme="calm"] .media-modal-inner {
+  width: min(1280px, 98vw);
+  max-height: 96vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 10px;
+}
+
+html[data-theme="calm"] .media-modal-toolbar .media-carousel-btn {
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  opacity: 1;
+  box-shadow: none;
+}
+
+html[data-theme="calm"] .media-modal--right-to-left .media-modal-btn--prev {
+  left: auto;
+  right: 10px;
+}
+
+html[data-theme="calm"] .media-modal--right-to-left .media-modal-btn--next {
+  right: auto;
+  left: 10px;
+}
+
+html[data-theme="calm"] .media-modal--right-to-left .media-modal-thumbs {
+  flex-direction: row-reverse;
+}
+
+html[data-theme="calm"] .volume-nav {
+  opacity: 0.42;
+}
+
+html[data-theme="calm"] .volume-nav:hover {
+  opacity: 0.62;
+}
+
+html[data-theme="calm"] .category-btn.is-active {
+  background: var(--btn-active-bg);
+  color: var(--btn-active-text);
+}
+
+html[data-theme="calm"] h1,
+html[data-theme="calm"] h2 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  text-shadow: 0 1px 2px rgba(10, 40, 70, 0.35);
+}
+
+html[data-theme="calm"] h2 {
+  font-weight: 600;
+}
+
+html[data-theme="calm"] .blink,
+html[data-theme="calm"] .title-badge {
+  animation: none;
+  opacity: 1;
+}
+
+html[data-theme="calm"] .box-stickers {
+  display: none;
+}
+
+html[data-theme="calm"] .marquee-strip {
+  background: var(--marquee-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+}
+
+html[data-theme="calm"] .marquee-track span {
+  color: var(--marquee-text);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+html[data-theme="calm"] .catalog-meta {
+  color: var(--text-meta);
+}
+
+html[data-theme="calm"] .media-viewer .media-carousel-status,
+html[data-theme="calm"] .media-modal-status {
+  color: var(--viewer-status-text);
+}
+
+html[data-theme="calm"] .box--crowded::before,
+html[data-theme="calm"] .clutter-widget {
+  color: var(--box-banner-text);
+}
+
+html[data-theme="calm"] .box a {
+  color: var(--ms-link);
+}
+
+html[data-theme="calm"] .box a:visited {
+  color: var(--ms-visited);
+}
+
+html[data-theme="calm"] .box a:hover {
+  color: var(--link-hover-color);
+  background: var(--link-hover-bg);
+}
+
+@media (max-width: 700px) {
+  html[data-theme="calm"] body {
+    background-repeat: no-repeat, no-repeat;
+    background-position: center center, center center;
+    background-size: cover, cover;
+  }
+
+  html[data-theme="calm"] .media-viewer--carousel {
+    padding: 8px;
+  }
+
+  html[data-theme="calm"] .media-viewer .media-carousel-frame {
+    min-height: 240px;
+  }
+
+  html[data-theme="calm"] .media-viewer .media-carousel-btn {
+    padding: 6px 8px;
+    font-size: 0.78rem;
+  }
+
+  html[data-theme="calm"] .media-viewer .media-carousel-right-actions {
+    gap: 6px;
+  }
+
+  html[data-theme="calm"] .media-modal {
+    padding: 8px;
+  }
+
+  html[data-theme="calm"] .media-modal-inner {
+    width: 100%;
+    max-height: 98vh;
+  }
+
+  html[data-theme="calm"] .media-modal-image {
+    max-height: 64vh;
+  }
+}
