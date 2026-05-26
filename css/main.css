@@ -137,7 +137,7 @@ body::after {
 }
 
 .box--crowded::before {
-  content: "★ welcome 2 the zone ★ EST. 2006 (not really) ★";
+  content: "★ welcome 2 the zone ★ EST. 2026 ★";
   display: block;
   margin: 0 0 10px;
   padding: 4px 8px;
@@ -454,81 +454,6 @@ a:hover {
   text-decoration: underline;
 }
 
-.media-header {
-  margin-bottom: 12px;
-}
-
-.media-header h1 {
-  margin-bottom: 6px;
-}
-
-.media-layout-label {
-  margin-top: 4px;
-  font-size: 0.85em;
-}
-
-.media-viewer {
-  display: flex;
-  gap: 12px;
-  margin: 0 0 16px;
-  padding: 10px;
-  background: rgba(255, 255, 255, 0.6);
-  border: 2px dashed var(--aero-deep);
-  border-radius: 8px;
-}
-
-.media-viewer img {
-  display: block;
-  max-width: 100%;
-  height: auto;
-  border: 2px solid #fff;
-  outline: 1px solid var(--ridge-dark);
-  box-shadow: 2px 2px 6px rgba(0, 80, 140, 0.25);
-}
-
-.media-viewer--top-to-bottom {
-  flex-direction: column;
-  align-items: center;
-}
-
-.media-viewer--bottom-to-top {
-  flex-direction: column-reverse;
-  align-items: center;
-}
-
-.media-viewer--left-to-right {
-  flex-flow: row wrap;
-  justify-content: flex-start;
-  align-items: flex-start;
-}
-
-.media-viewer--left-to-right img {
-  flex: 0 1 auto;
-  max-width: min(100%, 420px);
-}
-
-.media-viewer--right-to-left {
-  flex-flow: row-reverse wrap-reverse;
-  justify-content: flex-end;
-  align-items: flex-start;
-}
-
-.media-viewer--right-to-left img {
-  flex: 0 1 auto;
-  max-width: min(100%, 420px);
-}
-
-.media-empty,
-.media-error {
-  margin: 0 0 12px;
-  font-family: var(--font-comic);
-  color: #666;
-}
-
-.media-error {
-  color: #cc0000;
-}
-
 @media (max-width: 700px) {
   body {
     padding: 10px 8px 24px;
@@ -568,6 +493,10 @@ a:hover {
     font-size: 10px;
     letter-spacing: 0.04em;
     margin-bottom: 8px;
+  }
+
+  .marquee-strip--footer {
+    display: none;
   }
 
   .marquee-track {
