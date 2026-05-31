@@ -12,7 +12,7 @@ window.SiteConfig = {
   backend: "supabase",
   fallbackToJson: false,
   supabase: {
-    url: "https://YOUR_PROJECT_REF.supabase.co",
-    anonKey: "YOUR_SUPABASE_ANON_KEY",
+    url: "https://ujevvowllrtlvpajiqeb.supabase.co",
+    anonKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVqZXZ2b3dsbHJ0bHZwYWppcWViIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAyMzM1NTAsImV4cCI6MjA5NTgwOTU1MH0.pxDnYOKNzBAeTgpmjGKhkr0Sb6h1jxiDtj0kuAQdohU",
   },
 };
