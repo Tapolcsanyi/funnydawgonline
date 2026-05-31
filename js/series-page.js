@@ -1,36 +1,22 @@
-function getSeriesId() {
-  const fromBody = document.body.getAttribute("data-series-id");
-  if (fromBody !== null && fromBody !== "") {
-    return String(fromBody);
-  }
-
-  const fromPath = ComicsDb.readSeriesFromPath();
-  if (fromPath) return fromPath.seriesId;
-
-  return null;
-}
-
 async function loadSeriesPage() {
   const list = document.getElementById("volumes-list");
   const header = document.getElementById("series-header");
   if (!list) return;
 
-  const seriesId = getSeriesId();
-  if (seriesId === null) {
-    list.innerHTML = "<li>No series id provided.</li>";
+  const ref = ComicsApi.resolveSeriesRef();
+  if (!ref) {
+    list.innerHTML = "<li>No series selected.</li>";
     return;
   }
 
   try {
-    const db = await ComicsDb.loadComicsDb();
-    const series = ComicsDb.getSeries(db, seriesId);
+    const series = await ComicsApi.getPublicSeries(ref);
     if (!series) {
       list.innerHTML = "<li>Series not found.</li>";
       return;
     }
 
-    const layoutMap = ComicsDb.buildLayoutMap(db.layouts);
-    const volumeIds = ComicsDb.sortedKeys(series.volumes ?? {});
+    const volumes = await ComicsApi.listPublicVolumesForSeries(series.id);
 
     document.title = `${series.title} — FUNNY DAWG ONLINE`;
 
@@ -46,28 +32,26 @@ async function loadSeriesPage() {
       }
     }
 
-    if (volumeIds.length === 0) {
+    if (volumes.length === 0) {
       list.innerHTML = "<li>No volumes yet.</li>";
       return;
     }
 
     list.replaceChildren();
-    for (const volumeId of volumeIds) {
-      const volume = series.volumes[volumeId];
+    for (const volume of volumes) {
       const li = document.createElement("li");
       const a = document.createElement("a");
-      a.href = volume.slug ? `${volume.slug}/` : `volume/${volumeId}/`;
+      const base = document.body.dataset.siteRoot ? `${document.body.dataset.siteRoot}/` : "";
+      a.href =
+        series.slug && volume.slug
+          ? `${base}comics/read/?series=${encodeURIComponent(series.slug)}&volume=${encodeURIComponent(volume.slug)}`
+          : `${base}comics/series/${series.id}/volume/${volume.id}/`;
       a.textContent = volume.title;
       li.appendChild(a);
 
-      const artist =
-        volume.artistName ?? series.artistName ?? "Unknown artist";
-      const layoutMeta = layoutMap.get(volume.layout);
-      const layoutName = layoutMeta?.label ?? volume.layout;
-
       const meta = document.createElement("span");
       meta.className = "catalog-meta";
-      meta.textContent = ` — ${artist} (${layoutName})`;
+      meta.textContent = ` — ${volume.artistName ?? series.artistName ?? "Unknown artist"} (${volume.layoutLabel})`;
       li.appendChild(meta);
 
       list.appendChild(li);
@@ -78,4 +62,12 @@ async function loadSeriesPage() {
   }
 }
 
-loadSeriesPage();
+function bootSeriesPage() {
+  if (typeof ComicsApi === "undefined") {
+    document.addEventListener("comics-api-ready", loadSeriesPage);
+    return;
+  }
+  loadSeriesPage();
+}
+
+bootSeriesPage();

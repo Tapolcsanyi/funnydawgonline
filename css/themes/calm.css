@@ -116,6 +116,19 @@
   --theme-toggle-text: #f0f8ff;
 
   --glass-blur: blur(12px) saturate(1.15);
+
+  --btn-pressed-bg: rgba(40, 110, 175, 0.65);
+  --btn-pressed-text: #fff;
+  --btn-focus-ring: #7ec8e8;
+
+  --status-draft-bg: rgba(255, 248, 220, 0.85);
+  --status-draft-text: #5a4a20;
+  --status-draft-border: rgba(200, 160, 80, 0.7);
+  --status-draft-track: rgba(200, 180, 120, 0.45);
+  --status-published-bg: var(--box-banner-bg);
+  --status-published-text: var(--box-banner-text);
+  --status-published-border: rgba(120, 190, 230, 0.65);
+  --status-published-track: rgba(90, 170, 230, 0.5);
 }
 
 html[data-theme="calm"] body {
@@ -138,6 +151,7 @@ html[data-theme="calm"] .box {
 }
 
 html[data-theme="calm"] .site-nav a,
+html[data-theme="calm"] .nav-btn,
 html[data-theme="calm"] .theme-toggle,
 html[data-theme="calm"] .category-btn,
 html[data-theme="calm"] .volume-nav {
@@ -149,6 +163,7 @@ html[data-theme="calm"] .volume-nav {
 }
 
 html[data-theme="calm"] .site-nav a:hover,
+html[data-theme="calm"] .nav-btn:hover,
 html[data-theme="calm"] .theme-toggle:hover,
 html[data-theme="calm"] .category-btn:hover,
 html[data-theme="calm"] .volume-nav:hover {

@@ -112,4 +112,75 @@
 
   --theme-toggle-bg: linear-gradient(180deg, #fff 0%, #d4eeff 50%, #9ed8f5 100%);
   --theme-toggle-text: #004488;
+
+  --btn-pressed-bg: linear-gradient(180deg, #ffcc00 0%, #ff9900 55%, #e86a00 100%);
+  --btn-pressed-text: #1a1a2e;
+  --btn-focus-ring: var(--hot-pink);
+
+  --status-draft-bg: linear-gradient(180deg, #ffffcc 0%, #fff099 45%, #ffe566 100%);
+  --status-draft-text: #a84800;
+  --status-draft-border: var(--ugly-orange);
+  --status-draft-track: linear-gradient(180deg, #fff8bb 0%, #ffdd66 100%);
+  --status-published-bg: var(--box-banner-bg);
+  --status-published-text: var(--box-banner-text);
+  --status-published-border: var(--hot-pink);
+  --status-published-track: linear-gradient(180deg, #c8f5ff 0%, #5ec8f0 55%, #2a8fc7 100%);
+}
+
+html[data-theme="aero"] .site-nav a,
+html[data-theme="aero"] .nav-btn,
+html[data-theme="aero"] .theme-toggle,
+html[data-theme="aero"] .category-btn,
+html[data-theme="aero"] .volume-nav,
+html[data-theme="aero"] .media-carousel-btn {
+  box-shadow:
+    2px 2px 4px var(--nav-shadow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.65);
+}
+
+html[data-theme="aero"] .site-nav a:hover,
+html[data-theme="aero"] .nav-btn:hover,
+html[data-theme="aero"] .theme-toggle:hover,
+html[data-theme="aero"] .category-btn:hover:not(:disabled),
+html[data-theme="aero"] .volume-nav:hover,
+html[data-theme="aero"] .media-carousel-btn:hover:not(:disabled) {
+  color: var(--text-nav-hover);
+  background: var(--nav-bg-hover);
+}
+
+html[data-theme="aero"] .category-btn.is-active {
+  background: var(--btn-active-bg);
+  color: var(--btn-active-text);
+}
+
+html[data-theme="aero"] .publish-status-banner--draft {
+  color: var(--status-draft-text);
+  background: var(--status-draft-bg);
+  border: 2px dashed var(--status-draft-border);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+}
+
+html[data-theme="aero"] .publish-status-banner--published {
+  color: var(--status-published-text);
+  background: var(--status-published-bg);
+  border: 2px solid var(--status-published-border);
+}
+
+html[data-theme="aero"] .publish-status-switch input:not(:checked) + .publish-status-track {
+  background: var(--status-draft-track);
+  border-color: var(--status-draft-border);
+}
+
+html[data-theme="aero"] .publish-status-switch input:checked + .publish-status-track {
+  background: var(--status-published-track);
+  border-color: var(--aero-deep);
+}
+
+html[data-theme="aero"] .publish-status-switch-text {
+  color: var(--text-btn);
+}
+
+html[data-theme="aero"] .media-viewer .media-carousel-btn:hover:not(:disabled) {
+  background: var(--nav-bg-hover);
+  color: var(--text-nav-hover);
 }

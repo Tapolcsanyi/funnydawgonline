@@ -5,7 +5,10 @@ function resolveAssetPath(src, base) {
   return `${base}${src}`;
 }
 
-function getVolumeIds() {
+function getVolumeRef() {
+  if (typeof ComicsApi !== "undefined") {
+    return ComicsApi.resolveVolumeRef();
+  }
   const seriesId = document.body.getAttribute("data-series-id");
   const volumeId = document.body.getAttribute("data-volume-id");
   if (seriesId !== null && seriesId !== "" && volumeId !== null && volumeId !== "") {
@@ -422,15 +425,28 @@ async function loadMediaViewer() {
       }
       data = await loadArtFromDatabase(rawId, base);
     } else {
-      const ids = getVolumeIds();
-      if (!ids) {
-        viewer.innerHTML =
-          "<p class='media-empty'>No volume selected. <a href='../'>Back to series</a>.</p>";
+      const ref = getVolumeRef();
+      if (!ref) {
+        const params = new URLSearchParams(window.location.search);
+        const seriesSlug = params.get("series");
+        const backHint = seriesSlug
+          ? `<a class="nav-btn" href="../series-view/?series=${encodeURIComponent(seriesSlug)}">← Back to volumes</a>`
+          : `<a class="nav-btn" href="../">← Back to comics</a>`;
+        viewer.innerHTML = `<p class="media-empty">No volume selected.</p><nav class="back-nav-bar">${backHint}</nav>`;
+        if (errorEl) {
+          errorEl.hidden = false;
+          errorEl.textContent =
+            "Missing or invalid ?series= and ?volume= in the URL. Publish the comic and use Go to comic from the edit page.";
+        }
         return;
       }
-      const db = await ComicsDb.loadComicsDb();
-      data = ComicsDb.prepareVolumeForViewer(db, ids.seriesId, ids.volumeId);
-      Object.assign(data, ComicsDb.getVolumeAdjacency(db, ids.seriesId, ids.volumeId, base));
+      if (typeof ComicsApi !== "undefined") {
+        data = await ComicsApi.getVolumeForViewer(ref);
+      } else {
+        const db = await ComicsDb.loadComicsDb();
+        data = ComicsDb.prepareVolumeForViewer(db, ref.seriesId, ref.volumeId);
+        Object.assign(data, ComicsDb.getVolumeAdjacency(db, ref.seriesId, ref.volumeId, base));
+      }
     }
 
     document.title = `${data.title} — FUNNY DAWG ONLINE`;
@@ -469,4 +485,15 @@ document.addEventListener("keydown", (event) => {
   activeCarouselController.onKeydown(event);
 });
 
-loadMediaViewer();
+function bootMediaViewer() {
+  if (typeof ComicsApi !== "undefined") {
+    loadMediaViewer();
+    return;
+  }
+  document.addEventListener("comics-api-ready", loadMediaViewer, { once: true });
+  setTimeout(() => {
+    if (typeof ComicsApi !== "undefined") loadMediaViewer();
+  }, 12000);
+}
+
+bootMediaViewer();

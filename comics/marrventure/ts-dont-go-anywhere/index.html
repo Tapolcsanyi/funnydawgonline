@@ -10,12 +10,7 @@
   <script src="../../../js/theme.js"></script>
   <script src="../../../js/comic-id-boot.js"></script>
 </head>
-<body
-  data-site-root="../../.."
-  data-media-type="comic"
-  data-series-id="0"
-  data-volume-id="0"
->
+<body data-site-root="../../.." data-media-type="comic">
   <div class="box">
     <div id="site-nav"></div>
     <header id="media-header" class="media-header">
@@ -30,9 +25,11 @@
       aria-label="Comic pages"
     ></div>
     <p id="media-error" class="media-error" hidden></p>
-    <p><a href="../">← Back to volumes</a></p>
+    <nav class="back-nav-bar" aria-label="Back">
+      <a class="nav-btn" href="../">← Back to volumes</a>
+    </nav>
   </div>
-  <script src="../../../js/comics-db.js" defer></script>
+  <script src="../../../js/comics-api-bundle.js"></script>
   <script src="../../../js/nav.js" defer></script>
   <script src="../../../js/clutter.js" defer></script>
   <script src="../../../js/media-viewer.js" defer></script>

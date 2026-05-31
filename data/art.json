@@ -1,4 +1,5 @@
 {
+  "_note": "Legacy fallback only when backend is json. Public art catalog uses Supabase art_pieces.",
   "art": [
     {
       "id": "sketch-01",

@@ -27,6 +27,9 @@ function initCategoryBar() {
         b.classList.remove("is-active");
       });
       btn.classList.add("is-active");
+      document.dispatchEvent(
+        new CustomEvent("category-change", { detail: { label } })
+      );
     });
 
     bar.appendChild(btn);

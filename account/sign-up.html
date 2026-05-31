@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign up — FUNNY DAWG ONLINE</title>
+  <link rel="stylesheet" href="../css/main.css" />
+  <script src="../js/theme.js"></script>
+</head>
+<body data-site-root=".." data-account-page="signup">
+  <div class="box">
+    <div id="site-nav"></div>
+    <h1>Sign up</h1>
+    <form id="auth-signup-form" class="account-form">
+      <label>Display name <input type="text" name="displayName" autocomplete="nickname" /></label>
+      <label>Email <input type="email" name="email" required autocomplete="email" /></label>
+      <label>Password <input type="password" name="password" required minlength="6" autocomplete="new-password" /></label>
+      <button type="submit" class="category-btn">Create account</button>
+    </form>
+    <p id="auth-error" class="media-error" hidden></p>
+    <p id="auth-status" class="catalog-meta" hidden></p>
+    <p><a href="login.html">Already have an account?</a></p>
+  </div>
+  <script src="../js/site-script-version.js"></script>
+  <script src="../js/load-site-config.js"></script>
+  <script src="../js/config.js"></script>
+  <script src="../js/comics-api-bundle.js"></script>
+  <script src="../js/nav.js?v=20260526a" defer></script>
+  <script src="../js/account-auth.js?v=20260526a" defer></script>
+</body>
+</html>

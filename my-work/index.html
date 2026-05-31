@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My work — FUNNY DAWG ONLINE</title>
+  <link rel="stylesheet" href="../css/main.css" />
+  <script src="../js/theme.js"></script>
+</head>
+<body data-site-root="..">
+  <div class="box">
+    <div id="site-nav"></div>
+    <h1>My work</h1>
+    <p class="catalog-meta">Your comics and art. Select Edit to change a piece.</p>
+
+    <div id="my-work-gate">
+      <p><a href="../account/login.html?next=../my-work/">Log in</a> to see your work.</p>
+    </div>
+
+    <div id="my-work-panel" hidden>
+      <p id="my-work-message" class="catalog-meta"></p>
+      <p class="upload-actions">
+        <a class="category-btn" href="../upload/">Upload new</a>
+      </p>
+
+      <section class="upload-section">
+        <h2>My comics</h2>
+        <div id="my-comics-list" class="my-work-tree">
+          <p class="catalog-meta">Loading…</p>
+        </div>
+      </section>
+
+      <section class="upload-section">
+        <h2>My art</h2>
+        <ul id="my-art-list" class="media-list">
+          <li class="catalog-meta">Loading…</li>
+        </ul>
+      </section>
+    </div>
+  </div>
+  <script src="../js/site-script-version.js"></script>
+  <script src="../js/load-site-config.js"></script>
+  <script src="../js/config.js"></script>
+  <script src="../js/comics-api-bundle.js"></script>
+  <script src="../js/nav.js" defer></script>
+  <script src="../js/my-work.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+js/config.local.js
+# Optional: gitignore if you inject config.production.js in CI only
+# js/config.production.js
+.DS_Store
+Thumbs.db

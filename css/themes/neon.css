@@ -1,0 +1,304 @@
+/* Neon — hyperpop palette (background kept for later; UI may be revised) */
+@import url("https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Space+Grotesk:wght@400;500;700&display=swap");
+
+:root {
+  --font-comic: "Unbounded", "Arial Black", Impact, sans-serif;
+  --font-body: "Space Grotesk", "Segoe UI", system-ui, sans-serif;
+  --font-heading: "Unbounded", "Arial Black", Impact, sans-serif;
+
+  --aero-sky: #00e5ff;
+  --aero-deep: #7b2fff;
+  --aero-mint: #39ff14;
+  --ms-link: #ff3dff;
+  --ms-visited: #b388ff;
+  --ugly-lime: #39ff14;
+  --ugly-orange: #ff6b2c;
+  --hot-pink: #ff1493;
+  --ridge-light: rgba(255, 255, 255, 0.35);
+  --ridge-dark: rgba(80, 0, 120, 0.9);
+
+  --text-primary: #ece8ff;
+  --text-heading: #fff;
+  --text-heading-shadow-1: #ff1493;
+  --text-heading-shadow-2: #00e5ff;
+  --text-subheading: #ff6b9a;
+  --text-meta: #9d8fc8;
+  --text-nav: #f5f0ff;
+  --text-nav-hover: #fff;
+  --text-btn: #fff;
+  --text-counter: #39ff14;
+
+  --page-bg-color: #050508;
+  --page-bg-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cpath d='M60 8 L68 44 L104 52 L68 60 L60 96 L52 60 L16 52 L52 44 Z' fill='%23ffffff' opacity='0.03'/%3E%3C/svg%3E"),
+    radial-gradient(ellipse 80% 50% at 15% 20%, rgba(255, 20, 147, 0.22) 0%, transparent 55%),
+    radial-gradient(ellipse 70% 45% at 85% 75%, rgba(0, 229, 255, 0.18) 0%, transparent 50%),
+    radial-gradient(ellipse 60% 40% at 50% 100%, rgba(123, 47, 255, 0.35) 0%, transparent 55%),
+    linear-gradient(165deg, #050508 0%, #120818 35%, #0a0614 65%, #050508 100%);
+  --page-bg-size: 120px 120px, 100% 100%, 100% 100%, 100% 100%, 100% 100%;
+  --page-bg-position: center center, center center, center center, center center, center center;
+  --page-bg-repeat: repeat, no-repeat, no-repeat, no-repeat, no-repeat;
+  --page-bg-mobile-image:
+    radial-gradient(ellipse 80% 50% at 20% 15%, rgba(255, 20, 147, 0.2) 0%, transparent 50%),
+    radial-gradient(ellipse 70% 45% at 80% 80%, rgba(0, 229, 255, 0.15) 0%, transparent 45%),
+    linear-gradient(165deg, #050508 0%, #120818 50%, #050508 100%);
+  --page-bg-mobile-size: 100% 100%, 100% 100%, 100% 100%;
+  --scanline-opacity: 0.08;
+  --construction-display: block;
+
+  --box-bg: linear-gradient(
+    155deg,
+    rgba(18, 10, 28, 0.94) 0%,
+    rgba(8, 6, 16, 0.92) 55%,
+    rgba(22, 8, 32, 0.9) 100%
+  );
+  --box-border: rgba(255, 61, 255, 0.55);
+  --box-outline: rgba(0, 229, 255, 0.45);
+  --box-shadow-outer: #ff1493;
+  --box-shadow-glow: rgba(123, 47, 255, 0.55);
+  --box-banner-bg: repeating-linear-gradient(
+    90deg,
+    rgba(255, 20, 147, 0.35),
+    rgba(255, 20, 147, 0.35) 10px,
+    rgba(0, 229, 255, 0.2) 10px,
+    rgba(0, 229, 255, 0.2) 20px
+  );
+  --box-banner-text: #e8d4ff;
+
+  --marquee-bg: rgba(0, 0, 0, 0.75);
+  --marquee-text: #39ff14;
+  --marquee-border: #ff1493;
+  --marquee-footer-border: #00e5ff;
+
+  --nav-bg: linear-gradient(180deg, rgba(40, 10, 60, 0.9) 0%, rgba(10, 5, 20, 0.95) 100%);
+  --nav-bg-hover: linear-gradient(180deg, #ff1493 0%, #7b2fff 55%, #00e5ff 100%);
+  --nav-border-light: rgba(255, 120, 255, 0.5);
+  --nav-border-dark: rgba(60, 0, 90, 0.95);
+  --nav-shadow: rgba(255, 20, 147, 0.45);
+
+  --btn-bg: linear-gradient(180deg, rgba(60, 20, 90, 0.85) 0%, rgba(20, 8, 35, 0.95) 100%);
+  --btn-border-light: rgba(255, 100, 255, 0.45);
+  --btn-border-dark: rgba(0, 180, 220, 0.5);
+  --btn-active-bg: linear-gradient(180deg, #ff1493 0%, #7b2fff 50%, #00e5ff 100%);
+  --btn-active-text: #050508;
+
+  --category-bar-bg: linear-gradient(90deg, rgba(123, 47, 255, 0.25), rgba(255, 20, 147, 0.2));
+  --link-hover-bg: rgba(255, 20, 147, 0.35);
+  --link-hover-color: #00e5ff;
+
+  --rule-gradient: repeating-linear-gradient(
+    90deg,
+    #ff1493,
+    #ff1493 6px,
+    #7b2fff 6px,
+    #7b2fff 12px,
+    #00e5ff 12px,
+    #00e5ff 18px,
+    #39ff14 18px,
+    #39ff14 24px
+  );
+
+  --clutter-bg: rgba(12, 6, 22, 0.92);
+  --clutter-heading: #ff6b9a;
+  --clutter-border: #7b2fff;
+  --counter-bg: #000;
+  --counter-glow: #39ff14;
+
+  --viewer-border: #ff1493;
+  --viewer-panel-bg: rgba(12, 6, 22, 0.88);
+  --viewer-frame-bg: #000;
+  --viewer-image-outline: #00e5ff;
+  --thumb-active-border: #39ff14;
+  --thumb-active-glow: #ff1493;
+
+  --viewer-btn-bg: linear-gradient(180deg, rgba(80, 30, 120, 0.95) 0%, rgba(20, 8, 35, 0.98) 100%);
+  --viewer-btn-text: #fff;
+  --viewer-btn-border-light: rgba(255, 100, 255, 0.5);
+  --viewer-btn-border-dark: rgba(0, 200, 255, 0.45);
+  --viewer-status-text: #9d8fc8;
+  --modal-overlay: rgba(2, 0, 8, 0.92);
+  --modal-toolbar-text: #ece8ff;
+  --modal-frame-bg: #000;
+
+  --theme-toggle-bg: linear-gradient(180deg, rgba(60, 20, 90, 0.9) 0%, rgba(15, 5, 25, 0.95) 100%);
+  --theme-toggle-text: #f5f0ff;
+
+  --neon-glow: 0 0 12px rgba(255, 20, 147, 0.5), 0 0 24px rgba(0, 229, 255, 0.25);
+
+  --btn-pressed-bg: linear-gradient(180deg, #ff1493 0%, #7b2fff 100%);
+  --btn-pressed-text: #050508;
+  --btn-focus-ring: #00e5ff;
+
+  --status-draft-bg: rgba(255, 20, 147, 0.2);
+  --status-draft-text: #ff9ed0;
+  --status-draft-border: #ff6b2c;
+  --status-draft-track: rgba(255, 107, 44, 0.45);
+  --status-published-bg: linear-gradient(90deg, rgba(57, 255, 20, 0.25), rgba(0, 229, 255, 0.2));
+  --status-published-text: #39ff14;
+  --status-published-border: #00e5ff;
+  --status-published-track: linear-gradient(90deg, #7b2fff, #00e5ff);
+}
+
+html[data-theme="neon"] body::before {
+  content: "◈ MIDNIGHT ◈";
+  display: var(--construction-display, block);
+  color: #fff;
+  background: linear-gradient(135deg, #ff1493, #7b2fff);
+  border: 2px solid #00e5ff;
+  box-shadow: var(--neon-glow);
+  transform: rotate(-3deg);
+  font-family: var(--font-heading);
+  letter-spacing: 0.12em;
+}
+
+html[data-theme="neon"] body::after {
+  opacity: var(--scanline-opacity);
+}
+
+html[data-theme="neon"] .box {
+  position: relative;
+  z-index: 1;
+  box-shadow:
+    0 0 0 2px var(--box-shadow-outer),
+    0 0 0 6px rgba(0, 0, 0, 0.8),
+    0 0 0 8px var(--box-outline),
+    0 0 32px var(--box-shadow-glow),
+    var(--neon-glow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+html[data-theme="neon"] h1 {
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+html[data-theme="neon"] .site-nav a,
+html[data-theme="neon"] .nav-btn,
+html[data-theme="neon"] .theme-toggle,
+html[data-theme="neon"] .category-btn,
+html[data-theme="neon"] .volume-nav {
+  box-shadow: var(--neon-glow);
+}
+
+html[data-theme="neon"] .site-nav a:hover,
+html[data-theme="neon"] .nav-btn:hover,
+html[data-theme="neon"] .theme-toggle:hover,
+html[data-theme="neon"] .category-btn:hover,
+html[data-theme="neon"] .volume-nav:hover {
+  background: var(--nav-bg-hover);
+  color: var(--text-nav-hover);
+}
+
+html[data-theme="neon"] .media-viewer--top-to-bottom,
+html[data-theme="neon"] .media-viewer--bottom-to-top,
+html[data-theme="neon"] .media-viewer--left-to-right,
+html[data-theme="neon"] .media-viewer--right-to-left {
+  --viewer-border: #ff1493;
+  --viewer-panel-bg: rgba(12, 6, 22, 0.88);
+  --viewer-frame-bg: #000;
+  --viewer-image-outline: #00e5ff;
+  --viewer-btn-bg: linear-gradient(180deg, rgba(80, 30, 120, 0.95) 0%, rgba(20, 8, 35, 0.98) 100%);
+  --viewer-btn-text: #fff;
+  --viewer-btn-border-light: rgba(255, 100, 255, 0.5);
+  --viewer-btn-border-dark: rgba(0, 200, 255, 0.45);
+  --viewer-status-text: #9d8fc8;
+  --thumb-active-border: #39ff14;
+  --thumb-active-glow: #ff1493;
+}
+
+html[data-theme="neon"] .media-viewer--stacked {
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+html[data-theme="neon"] .media-viewer--stacked img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 1px solid rgba(0, 229, 255, 0.35);
+  box-shadow: 0 0 16px rgba(255, 20, 147, 0.25);
+}
+
+html[data-theme="neon"] .media-viewer--carousel {
+  padding: 12px;
+  border: 2px solid var(--viewer-border);
+  background: var(--viewer-panel-bg);
+  box-shadow: var(--neon-glow);
+}
+
+html[data-theme="neon"] .media-viewer--right-to-left .media-carousel-controls {
+  flex-direction: row-reverse;
+}
+
+html[data-theme="neon"] .media-viewer--right-to-left .media-carousel-right-actions {
+  flex-direction: row-reverse;
+}
+
+html[data-theme="neon"] .media-viewer--right-to-left .media-tap-zone--prev {
+  left: auto;
+  right: 0;
+}
+
+html[data-theme="neon"] .media-viewer--right-to-left .media-tap-zone--next {
+  right: auto;
+  left: 0;
+}
+
+html[data-theme="neon"] .media-viewer .media-carousel-btn:hover:not(:disabled) {
+  background: var(--nav-bg-hover);
+  color: var(--btn-active-text);
+}
+
+html[data-theme="neon"] .media-modal--right-to-left .media-modal-btn--prev {
+  left: auto;
+  right: 10px;
+}
+
+html[data-theme="neon"] .media-modal--right-to-left .media-modal-btn--next {
+  right: auto;
+  left: 10px;
+}
+
+html[data-theme="neon"] .media-modal--right-to-left .media-modal-thumbs {
+  flex-direction: row-reverse;
+}
+
+html[data-theme="neon"] .volume-nav {
+  opacity: 0.55;
+}
+
+html[data-theme="neon"] .volume-nav:hover {
+  opacity: 0.85;
+}
+
+html[data-theme="neon"] .category-btn.is-active {
+  background: var(--btn-active-bg);
+  color: var(--btn-active-text);
+}
+
+html[data-theme="neon"] .box a {
+  color: var(--ms-link);
+}
+
+html[data-theme="neon"] .box a:visited {
+  color: var(--ms-visited);
+}
+
+html[data-theme="neon"] .box a:hover {
+  color: var(--link-hover-color);
+  background: var(--link-hover-bg);
+}
+
+@media (max-width: 700px) {
+  html[data-theme="neon"] .media-viewer--carousel {
+    padding: 8px;
+  }
+
+  html[data-theme="neon"] .media-viewer .media-carousel-frame {
+    min-height: 240px;
+  }
+}

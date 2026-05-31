@@ -3,7 +3,9 @@ const SiteTheme = (function () {
   const DEFAULT_THEME = "aero";
   const THEMES = {
     aero: { id: "aero", label: "Loud", next: "calm" },
-    calm: { id: "calm", label: "Calm", next: "aero" },
+    calm: { id: "calm", label: "Calm", next: "neon" },
+    neon: { id: "neon", label: "Neon", next: "dark" },
+    dark: { id: "dark", label: "Dark", next: "aero" },
   };
 
   const themeScript =
@@ -20,6 +22,7 @@ const SiteTheme = (function () {
 
   function getSavedTheme() {
     const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved === "sigilkore") return "neon";
     return THEMES[saved] ? saved : DEFAULT_THEME;
   }
 

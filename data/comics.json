@@ -1,4 +1,5 @@
 {
+  "_note": "Archive / seed source only. Runtime catalog uses Supabase after running supabase/migrations/003_seed_comics_from_json.sql",
   "layouts": [
     {
       "id": "top-to-bottom",

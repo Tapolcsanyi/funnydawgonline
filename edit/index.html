@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Edit — FUNNY DAWG ONLINE</title>
+  <link rel="stylesheet" href="../css/main.css" />
+  <script src="../js/theme.js"></script>
+</head>
+<body data-site-root="..">
+  <div class="box">
+    <div id="site-nav"></div>
+    <div class="edit-top-bar">
+      <nav class="back-nav-bar edit-back-link" aria-label="Back">
+        <a class="nav-btn" href="../my-work/">← Back to my work</a>
+      </nav>
+      <a id="go-to-reader" class="category-btn go-to-reader-btn" hidden>Go to comic</a>
+    </div>
+    <h1>Edit</h1>
+
+    <div id="edit-gate">
+      <p><a href="../account/login.html?next=../edit/">Log in</a> to edit your work.</p>
+    </div>
+
+    <div id="edit-panel" hidden>
+      <p id="edit-message" class="catalog-meta"></p>
+
+      <section id="edit-art-panel" class="upload-section" hidden>
+        <div class="edit-section-header">
+          <h2>Edit art</h2>
+          <a id="go-to-art" class="category-btn go-to-reader-btn" hidden>Go to art</a>
+        </div>
+
+        <div id="art-status-mount"></div>
+
+        <div class="form-actions-top">
+          <button type="submit" form="art-edit-form" class="category-btn category-btn--primary">
+            Save changes
+          </button>
+          <button type="button" id="art-delete-btn" class="category-btn category-btn--danger">
+            Delete art
+          </button>
+        </div>
+
+        <form id="art-edit-form" class="account-form">
+          <label>Title <input type="text" id="art-title" required /></label>
+          <label>Slug <input type="text" id="art-slug" pattern="[a-z0-9-]+" /></label>
+          <label>Category
+            <input type="text" id="art-category" list="art-category-suggestions" />
+          </label>
+          <datalist id="art-category-suggestions">
+            <option value="Illustration"></option>
+            <option value="Sketch"></option>
+            <option value="Digital"></option>
+          </datalist>
+          <p class="catalog-meta">Current image:</p>
+          <img id="art-current-preview" class="edit-preview-image" alt="" hidden />
+          <label>Replace image (optional) <input type="file" id="art-image" accept="image/*" /></label>
+          <button type="submit" class="category-btn">Save changes</button>
+        </form>
+      </section>
+
+      <section id="edit-comic-panel" class="upload-section" hidden>
+        <div class="edit-section-header">
+          <h2>Edit comic volume</h2>
+        </div>
+
+        <div id="series-status-mount"></div>
+        <div id="volume-status-mount"></div>
+
+        <div class="form-actions-top">
+          <button type="submit" form="comic-edit-form" class="category-btn category-btn--primary">
+            Save changes
+          </button>
+          <button type="button" id="volume-delete-btn" class="category-btn category-btn--danger">
+            Delete volume
+          </button>
+          <button type="button" id="series-delete-btn" class="category-btn category-btn--danger">
+            Delete entire comic
+          </button>
+        </div>
+
+        <form id="comic-edit-form" class="account-form">
+          <div class="upload-subpanel">
+            <h3>Comic (series)</h3>
+            <label>Comic title <input type="text" id="comic-title" required /></label>
+            <label>Comic slug <input type="text" id="comic-slug" pattern="[a-z0-9-]+" required /></label>
+            <label>Description <textarea id="comic-description" rows="2"></textarea></label>
+            <img id="comic-cover-preview" class="edit-preview-image" alt="Comic cover" hidden />
+            <label>Replace cover (optional) <input type="file" id="comic-cover" accept="image/*" /></label>
+          </div>
+
+          <label>Volume title <input type="text" id="volume-title" required /></label>
+          <label>Volume slug <input type="text" id="volume-slug" pattern="[a-z0-9-]+" required /></label>
+          <label>
+            Reading layout
+            <select id="volume-layout" required></select>
+          </label>
+
+          <h3>Pages</h3>
+          <p class="catalog-meta">Reorder, remove, or add new page images.</p>
+          <div id="page-queue-mount" class="page-queue-mount"></div>
+          <label class="page-queue-add">
+            Add page images
+            <input type="file" id="page-files-input" accept="image/*" multiple />
+          </label>
+
+          <button type="submit" class="category-btn">Save changes</button>
+        </form>
+      </section>
+    </div>
+  </div>
+  <script src="../js/site-script-version.js"></script>
+  <script src="../js/load-site-config.js"></script>
+  <script src="../js/config.js"></script>
+  <script src="../js/comics-api-bundle.js"></script>
+  <script src="../js/page-upload-queue.js"></script>
+  <script src="../js/publish-status-control.js"></script>
+  <script src="../js/nav.js?v=20260526c" defer></script>
+  <script src="../js/edit-dashboard.js" defer></script>
+</body>
+</html>
