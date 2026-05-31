@@ -79,12 +79,14 @@ const SupabaseComicsAdapter = (function () {
     if (ref.seriesId) {
       const { data, error } = await getClient()
         .from("series")
-        .select("id, slug, title, description, artist_name, status")
+        .select("id, slug, title, description, artist_name, status, cover_storage_path")
         .eq("id", ref.seriesId)
         .eq("status", ComicModels.VOLUME_STATUS.PUBLISHED)
         .maybeSingle();
       if (error) throw error;
       if (!data) return null;
+      const base = getSiteBase();
+      const coverPath = data.cover_storage_path ?? "";
       return {
         id: data.id,
         slug: data.slug,
@@ -92,6 +94,7 @@ const SupabaseComicsAdapter = (function () {
         description: data.description ?? "",
         artistName: data.artist_name ?? "",
         status: data.status,
+        coverUrl: coverPath ? resolvePageSrc(coverPath, base) : "",
       };
     }
     return null;
@@ -100,12 +103,14 @@ const SupabaseComicsAdapter = (function () {
   async function getSeriesBySlug(seriesSlug) {
     const { data, error } = await getClient()
       .from("series")
-      .select("id, slug, title, description, artist_name, status")
+      .select("id, slug, title, description, artist_name, status, cover_storage_path")
       .eq("slug", seriesSlug)
       .eq("status", ComicModels.VOLUME_STATUS.PUBLISHED)
       .maybeSingle();
     if (error) throw error;
     if (!data) return null;
+    const base = getSiteBase();
+    const coverPath = data.cover_storage_path ?? "";
     return {
       id: data.id,
       slug: data.slug,
@@ -113,6 +118,7 @@ const SupabaseComicsAdapter = (function () {
       description: data.description ?? "",
       artistName: data.artist_name ?? "",
       status: data.status,
+      coverUrl: coverPath ? resolvePageSrc(coverPath, base) : "",
     };
   }
 

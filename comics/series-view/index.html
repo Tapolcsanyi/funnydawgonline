@@ -17,13 +17,20 @@
       <p class="catalog-meta" id="series-artist"></p>
       <p class="catalog-meta" id="series-description" hidden></p>
     </header>
-    <h2>Volumes</h2>
-    <ul id="volumes-list" class="media-list">
-      <li>Loading…</li>
-    </ul>
-    <nav class="back-nav-bar" aria-label="Back">
-      <a class="nav-btn" href="../">← Back to comics</a>
-    </nav>
+    <div class="series-view-body">
+      <div class="series-view-main">
+        <h2>Volumes</h2>
+        <ul id="volumes-list" class="media-list">
+          <li>Loading…</li>
+        </ul>
+        <nav class="back-nav-bar" aria-label="Back">
+          <a class="nav-btn" href="../">← Back to comics</a>
+        </nav>
+      </div>
+      <aside id="series-cover-panel" class="series-view-cover" aria-label="Series cover" hidden>
+        <img id="series-cover-image" class="series-view-cover-image" alt="" loading="lazy" decoding="async" />
+      </aside>
+    </div>
   </div>
   <script src="../../js/site-script-version.js"></script>
   <script src="../../js/load-site-config.js"></script>

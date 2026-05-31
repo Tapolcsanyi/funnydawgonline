@@ -800,6 +800,15 @@ a.nav-btn:focus-visible {
   color: var(--text-meta);
   font-size: 0.88em;
   font-style: italic;
+  text-decoration: none;
+}
+
+.media-header h1 {
+  font-size: clamp(1.75rem, 5vw, 2.5rem);
+}
+
+.media-header .catalog-meta {
+  font-size: 1rem;
 }
 
 .media-list {
@@ -814,7 +823,8 @@ a.nav-btn:focus-visible {
 
 .media-list a {
   font-weight: bold;
-  text-decoration: underline;
+  font-size: clamp(1.15rem, 3vw, 1.45rem);
+  text-decoration: none;
 }
 
 .comics-catalog {
@@ -841,35 +851,124 @@ a.nav-btn:focus-visible {
 }
 
 .comics-catalog-title {
+  font-family: var(--font-comic);
+  font-size: clamp(1.35rem, 3.5vw, 1.85rem);
   font-weight: bold;
-  text-decoration: underline;
+  line-height: 1.15;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  text-decoration: none;
 }
 
 .comics-catalog-artist {
   margin: 0;
   font-style: italic;
+  text-decoration: none;
 }
 
 .comics-catalog-cover {
   display: block;
-  width: min(100%, 220px);
-  max-height: 300px;
+  width: min(100%, 180px);
+  height: 270px;
   object-fit: cover;
+  object-position: center;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
   border: 2px solid var(--box-border);
   border-radius: 8px;
   box-shadow: 2px 3px 8px var(--nav-shadow);
+  background: var(--nav-bg);
 }
 
 .comics-catalog-cover--placeholder {
   object-fit: contain;
-  max-height: 140px;
+  image-rendering: auto;
   padding: 14px;
-  background: var(--nav-bg);
   box-sizing: border-box;
 }
 
 .comics-catalog-meta {
   margin: 6px 0 0;
+}
+
+.art-catalog {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.art-catalog-item {
+  margin: 0;
+  min-width: 0;
+}
+
+.art-catalog .comics-catalog-entry {
+  width: 100%;
+}
+
+.art-catalog .comics-catalog-cover {
+  width: 100%;
+  max-width: none;
+}
+
+.art-catalog .comics-catalog-title {
+  width: 100%;
+  max-width: 100%;
+  font-size: clamp(0.85rem, 2vw, 1rem);
+  line-height: 1.25;
+  letter-spacing: 0.01em;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+
+.art-catalog-empty {
+  grid-column: 1 / -1;
+  margin: 0;
+}
+
+.series-view-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(160px, 280px);
+  gap: 16px 24px;
+  align-items: start;
+}
+
+.series-view-main {
+  min-width: 0;
+}
+
+.series-view-cover {
+  position: sticky;
+  top: 12px;
+}
+
+.series-view-cover-image {
+  display: block;
+  width: 100%;
+  max-width: 280px;
+  height: auto;
+  margin-left: auto;
+  object-fit: contain;
+  object-position: center;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  border: 2px solid var(--box-border);
+  border-radius: 8px;
+  box-shadow: 2px 3px 8px var(--nav-shadow);
+  background: var(--nav-bg);
+}
+
+.series-view-cover-image--placeholder {
+  image-rendering: auto;
+  padding: 18px;
+  box-sizing: border-box;
 }
 
 .media-viewer {
@@ -1261,6 +1360,20 @@ body.media-modal-open {
     animation-duration: 40s;
   }
 
+  .series-view-body {
+    grid-template-columns: 1fr;
+  }
+
+  .series-view-cover {
+    position: static;
+    order: -1;
+  }
+
+  .series-view-cover-image {
+    margin-left: 0;
+    max-width: min(100%, 220px);
+  }
+
   .box-layout {
     grid-template-columns: 1fr;
     gap: 10px;
@@ -1306,6 +1419,27 @@ body.media-modal-open {
     text-shadow:
       1px 1px 0 var(--text-heading-shadow-1),
       2px 2px 0 var(--text-heading-shadow-2);
+  }
+
+  .media-header h1 {
+    font-size: 1.65rem;
+  }
+
+  .comics-catalog-title {
+    font-size: 1.35rem;
+  }
+
+  .media-list a {
+    font-size: 1.2rem;
+  }
+
+  .art-catalog {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem 0.75rem;
+  }
+
+  .art-catalog .comics-catalog-title {
+    font-size: 0.85rem;
   }
 
   .title-badge {
@@ -1387,6 +1521,12 @@ body.media-modal-open {
   .media-thumb {
     width: 72px;
     height: 56px;
+  }
+}
+
+@media (max-width: 480px) {
+  .art-catalog {
+    grid-template-columns: 1fr;
   }
 }
 

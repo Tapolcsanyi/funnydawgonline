@@ -45,6 +45,7 @@ const JsonComicsAdapter = (function () {
       const db = await ComicsDb.loadComicsDb();
       const s = ComicsDb.getSeries(db, ref.seriesId);
       if (!s) return null;
+      const base = getSiteBase();
       return {
         id: ref.seriesId,
         slug: s.slug ?? ref.seriesId,
@@ -52,6 +53,7 @@ const JsonComicsAdapter = (function () {
         description: s.description ?? "",
         artistName: s.artistName ?? "",
         status: ComicModels.VOLUME_STATUS.PUBLISHED,
+        coverUrl: seriesCoverFromJson(s, base),
       };
     }
     return null;
@@ -63,6 +65,7 @@ const JsonComicsAdapter = (function () {
     for (const id of ComicsDb.sortedKeys(seriesMap)) {
       const s = seriesMap[id];
       if (s.slug === seriesSlug || id === seriesSlug) {
+        const base = getSiteBase();
         return {
           id,
           slug: s.slug ?? id,
@@ -70,6 +73,7 @@ const JsonComicsAdapter = (function () {
           description: s.description ?? "",
           artistName: s.artistName ?? "",
           status: ComicModels.VOLUME_STATUS.PUBLISHED,
+          coverUrl: seriesCoverFromJson(s, base),
         };
       }
     }

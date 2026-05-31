@@ -32,14 +32,25 @@ async function loadArtView() {
     document.title = `${piece.title} — Art — FUNNY DAWG ONLINE`;
     mount.replaceChildren();
 
+    const header = document.createElement("header");
+    header.className = "media-header";
+
     const h1 = document.createElement("h1");
     h1.textContent = piece.title;
+    header.appendChild(h1);
+
+    const artist = document.createElement("p");
+    artist.className = "catalog-meta";
+    artist.textContent = piece.artistName?.trim() ?? "";
+    artist.hidden = !artist.textContent;
+    header.appendChild(artist);
+
     const img = document.createElement("img");
     img.className = "edit-preview-image art-view-image";
     img.src = piece.imageUrl;
     img.alt = piece.title;
 
-    mount.append(h1, img);
+    mount.append(header, img);
 
     if (piece.isDraft) {
       const draftNote = document.createElement("p");
@@ -48,13 +59,10 @@ async function loadArtView() {
       mount.appendChild(draftNote);
     }
 
-    const metaParts = [];
-    if (piece.category) metaParts.push(piece.category);
-    if (piece.artistName) metaParts.push(piece.artistName);
-    if (metaParts.length) {
+    if (piece.category) {
       const meta = document.createElement("p");
       meta.className = "catalog-meta";
-      meta.textContent = metaParts.join(" — ");
+      meta.textContent = piece.category;
       mount.appendChild(meta);
     }
   } catch (err) {

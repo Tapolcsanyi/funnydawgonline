@@ -20,6 +20,8 @@ async function loadSeriesPage() {
 
     document.title = `${series.title} — FUNNY DAWG ONLINE`;
 
+    const base = document.body.dataset.siteRoot ? `${document.body.dataset.siteRoot}/` : "";
+
     if (header) {
       const titleEl = header.querySelector("h1");
       const artistEl = header.querySelector("#series-artist");
@@ -32,6 +34,17 @@ async function loadSeriesPage() {
       }
     }
 
+    const coverPanel = document.getElementById("series-cover-panel");
+    const coverImg = document.getElementById("series-cover-image");
+    if (coverPanel && coverImg) {
+      const placeholderCover = `${base}funnydawgonline-icon.png`;
+      const hasCover = Boolean(series.coverUrl);
+      coverImg.src = hasCover ? series.coverUrl : placeholderCover;
+      coverImg.alt = hasCover ? `${series.title} cover` : "";
+      coverImg.classList.toggle("series-view-cover-image--placeholder", !hasCover);
+      coverPanel.hidden = false;
+    }
+
     if (volumes.length === 0) {
       list.innerHTML = "<li>No volumes yet.</li>";
       return;
@@ -41,7 +54,6 @@ async function loadSeriesPage() {
     for (const volume of volumes) {
       const li = document.createElement("li");
       const a = document.createElement("a");
-      const base = document.body.dataset.siteRoot ? `${document.body.dataset.siteRoot}/` : "";
       a.href =
         series.slug && volume.slug
           ? `${base}comics/read/?series=${encodeURIComponent(series.slug)}&volume=${encodeURIComponent(volume.slug)}`
