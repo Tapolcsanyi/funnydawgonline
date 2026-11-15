@@ -10,7 +10,6 @@
   const fpsLabel = fpsSlider?.closest("label");
   const scaleSlider = document.getElementById("sprites-scale");
   const scaleOut = document.getElementById("sprites-scale-out");
-  const cursorDot = document.getElementById("sprites-cursor-dot");
   if (!listEl || !canvas) return;
 
   const root = document.body.dataset.siteRoot ? `${document.body.dataset.siteRoot}/` : "";
@@ -63,11 +62,6 @@
     const path = entry.src.replace(/^\//, "");
     const encoded = path.split("/").map((part) => encodeURIComponent(part)).join("/");
     return `${root}sprites/${encoded}`;
-  }
-
-  function setSpot(x, y) {
-    document.body.style.setProperty("--spot-x", `${x}px`);
-    document.body.style.setProperty("--spot-y", `${y}px`);
   }
 
   function setSheetUiVisible(on) {
@@ -299,18 +293,6 @@
     }
     updateMeta();
   });
-
-  if (!reduceMotion && cursorDot) {
-    window.addEventListener(
-      "pointermove",
-      (e) => {
-        cursorDot.style.left = `${e.clientX}px`;
-        cursorDot.style.top = `${e.clientY}px`;
-        setSpot(e.clientX, e.clientY);
-      },
-      { passive: true }
-    );
-  }
 
   window.addEventListener("keydown", (e) => {
     if (!selected || previewMode !== "sheet" || e.altKey || e.ctrlKey || e.metaKey) return;
