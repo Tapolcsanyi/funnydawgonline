@@ -1,0 +1,63 @@
+* {
+  box-sizing: border-box;
+}
+
+body.bp-realm {
+  margin: 0;
+  min-height: 100vh;
+  background: #120608 url("../BP/bp-background.jpg") center center / cover no-repeat fixed;
+  color: #e8d8d0;
+  font: 13px/1.55 "Courier New", Courier, monospace;
+}
+
+body.bp-realm a {
+  color: #f0b0a8;
+}
+
+body.bp-realm a:visited {
+  color: #c89088;
+}
+
+body.bp-realm a.bp-gate:visited {
+  color: #f0b0a8;
+}
+
+body.bp-realm a:focus-visible {
+  outline: 1px dotted #f88;
+  outline-offset: 1px;
+}
+
+.bp-wall {
+  margin: 0;
+  padding: 12px 2vw 48px 14px;
+  width: 100%;
+  max-width: none;
+  box-sizing: border-box;
+}
+
+.bp-wall p {
+  margin: 0 0 1em;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.85), 0 1px 3px rgba(0, 0, 0, 0.9);
+}
+
+body.god-circuit-realm {
+  margin: 0;
+  min-height: 100vh;
+  background: #0a1208 url("../god-circuit/god-circuit-background.png") center center / cover no-repeat fixed;
+  color: #d8e8d0;
+  font: 13px/1.55 "Courier New", Courier, monospace;
+}
+
+.god-circuit-wall {
+  margin: 0;
+  padding: 12px 2vw 20px 14px;
+  width: 100%;
+  max-width: none;
+  box-sizing: border-box;
+}
+
+.god-circuit-wall p {
+  margin: 0 0 1em;
+  max-width: none;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.85), 0 1px 3px rgba(0, 0, 0, 0.9);
+}

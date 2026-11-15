@@ -1,0 +1,100 @@
+* {
+  box-sizing: border-box;
+}
+
+body.eyes-realm {
+  margin: 0;
+  min-height: 100vh;
+  overflow: hidden;
+  cursor: default;
+  background: #000;
+}
+
+.eyes-exit {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 50;
+  width: 48px;
+  height: 48px;
+  opacity: 0;
+}
+
+.eyes-exit:focus-visible {
+  outline: 1px solid rgba(180, 60, 60, 0.35);
+  outline-offset: -4px;
+}
+
+.eyes-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background-color: #000;
+  background-repeat: repeat;
+  background-position: 0 0;
+  image-rendering: auto;
+}
+
+.eyes-veil {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  transition: opacity 0.04s linear;
+  background:
+    radial-gradient(ellipse 85% 70% at 50% 45%, transparent 0%, rgba(0, 0, 0, 0.35) 70%, rgba(0, 0, 0, 0.72) 100%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.15) 0%, transparent 25%, transparent 75%, rgba(0, 0, 0, 0.25) 100%);
+}
+
+body.eyes-solid-flash .eyes-veil {
+  opacity: 0;
+}
+
+.eyes-center {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.eyes-center-link {
+  pointer-events: auto;
+  display: block;
+  line-height: 0;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.eyes-center-link:focus-visible {
+  outline: 1px solid rgba(200, 120, 120, 0.55);
+  outline-offset: 6px;
+}
+
+.eyes-center-img {
+  width: var(--eyes-center-size, min(72vmin, 420px));
+  height: auto;
+  max-width: 92vw;
+  animation: eyes-spin-ccw var(--eyes-rotate-sec, 48s) linear infinite;
+}
+
+@keyframes eyes-spin-ccw {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .eyes-backdrop {
+    background-attachment: scroll;
+  }
+
+  .eyes-center-img {
+    animation: none;
+  }
+}

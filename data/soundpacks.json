@@ -1,0 +1,33 @@
+{
+  "_note": "folder is relative to sounds/. files are exact filenames in that folder.",
+  "packs": [
+    {
+      "id": "example-1",
+      "title": "Example 1",
+      "folder": "Example 1",
+      "description": "CMD drum one-shots.",
+      "zipPath": "",
+      "sizeLabel": "4 samples",
+      "files": [
+        "CMD Kick.wav",
+        "CMD Snare.wav",
+        "CMD Clap.wav",
+        "CMD Hat.wav"
+      ]
+    },
+    {
+      "id": "example-2",
+      "title": "Example 2",
+      "folder": "Example 2",
+      "description": "CMD drum one-shots.",
+      "zipPath": "",
+      "sizeLabel": "4 samples",
+      "files": [
+        "CMD Kick.wav",
+        "CMD Snare.wav",
+        "CMD Clap.wav",
+        "CMD Hat.wav"
+      ]
+    }
+  ]
+}

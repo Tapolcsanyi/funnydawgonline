@@ -1,0 +1,205 @@
+{
+  "sprites": [
+    {
+      "id": "site-icon",
+      "title": "funnydawg icon",
+      "src": "gallery/dawg-icon.png",
+      "rows": 1,
+      "cols": 1,
+      "fps": 0,
+      "tags": ["ui"]
+    },
+    {
+      "id": "angler",
+      "title": "angler",
+      "src": "gallery/Angler.png",
+      "rows": 4,
+      "cols": 4,
+      "fps": 8,
+      "tags": ["rpg"]
+    },
+    {
+      "id": "aqua-guardian",
+      "title": "aqua guardian",
+      "src": "gallery/AquaGuardian.png",
+      "rows": 4,
+      "cols": 4,
+      "fps": 8,
+      "tags": ["rpg"]
+    },
+    {
+      "id": "angelic-being",
+      "title": "angelic being",
+      "src": "gallery/angelic being.png",
+      "rows": 4,
+      "cols": 4,
+      "fps": 8,
+      "tags": ["rpg"]
+    },
+    {
+      "id": "bubba",
+      "title": "bubba",
+      "src": "gallery/Bubba.png",
+      "rows": 4,
+      "cols": 4,
+      "fps": 8,
+      "tags": ["rpg"]
+    },
+    {
+      "id": "cairo",
+      "title": "cairo",
+      "src": "gallery/Cairo.png",
+      "rows": 4,
+      "cols": 4,
+      "fps": 8,
+      "tags": ["rpg"]
+    },
+    {
+      "id": "catsman",
+      "title": "catsman",
+      "src": "gallery/Catsman.png",
+      "rows": 4,
+      "cols": 4,
+      "fps": 8,
+      "tags": ["rpg"]
+    },
+    {
+      "id": "cat-witch",
+      "title": "cat witch",
+      "src": "gallery/CatWitch.png",
+      "rows": 4,
+      "cols": 4,
+      "fps": 8,
+      "tags": ["rpg"]
+    },
+    {
+      "id": "helvane-inquisitor",
+      "title": "helvane inquisitor",
+      "src": "gallery/HelvaneInquisitor.png.png",
+      "rows": 4,
+      "cols": 4,
+      "fps": 8,
+      "tags": ["rpg"]
+    },
+    {
+      "id": "hemo-mariner",
+      "title": "hemo mariner",
+      "src": "gallery/HemoMariner.png",
+      "rows": 4,
+      "cols": 4,
+      "fps": 8,
+      "tags": ["rpg"]
+    },
+    {
+      "id": "hotsman",
+      "title": "hotsman",
+      "src": "gallery/hotsman.png",
+      "rows": 4,
+      "cols": 4,
+      "fps": 8,
+      "tags": ["rpg"]
+    },
+    {
+      "id": "iscream-cone",
+      "title": "iScream cone",
+      "src": "gallery/iScreamCone.png",
+      "rows": 4,
+      "cols": 4,
+      "fps": 8,
+      "tags": ["rpg"]
+    },
+    {
+      "id": "protag",
+      "title": "protag",
+      "src": "gallery/protag.png",
+      "rows": 4,
+      "cols": 4,
+      "fps": 8,
+      "tags": ["rpg"]
+    },
+    {
+      "id": "purple-guy",
+      "title": "purple guy",
+      "src": "gallery/purple guy.png",
+      "rows": 4,
+      "cols": 4,
+      "fps": 8,
+      "tags": ["rpg"]
+    },
+    {
+      "id": "seed-sentinel",
+      "title": "seed sentinel",
+      "src": "gallery/SeedSentinel.png",
+      "rows": 4,
+      "cols": 4,
+      "fps": 8,
+      "tags": ["rpg"]
+    },
+    {
+      "id": "todd-zinkle",
+      "title": "todd zinkle",
+      "src": "gallery/Todd Zinkle.png",
+      "rows": 4,
+      "cols": 4,
+      "fps": 8,
+      "tags": ["rpg"]
+    },
+    {
+      "id": "zippydoo",
+      "title": "zippydoo",
+      "src": "gallery/Zippydoo.png",
+      "rows": 4,
+      "cols": 4,
+      "fps": 8,
+      "tags": ["rpg"]
+    },
+    {
+      "id": "dummy-idle",
+      "title": "dummy idle",
+      "src": "gallery/Dummy Idle.gif",
+      "tags": ["dummy", "gif"]
+    },
+    {
+      "id": "dummy-walk",
+      "title": "dummy walk",
+      "src": "gallery/Dummy Walk.gif",
+      "tags": ["dummy", "gif"]
+    },
+    {
+      "id": "dummy-dash",
+      "title": "dummy dash",
+      "src": "gallery/Dummy Dash.gif",
+      "tags": ["dummy", "gif"]
+    },
+    {
+      "id": "dummy-kick",
+      "title": "dummy kick",
+      "src": "gallery/Dummy Kick.gif",
+      "tags": ["dummy", "gif"]
+    },
+    {
+      "id": "dummy-headbutt",
+      "title": "dummy headbutt",
+      "src": "gallery/Dummy Headbutt.gif",
+      "tags": ["dummy", "gif"]
+    },
+    {
+      "id": "rook-idle",
+      "title": "rook idle",
+      "src": "gallery/Rook Idle.gif",
+      "tags": ["rook", "gif"]
+    },
+    {
+      "id": "rook-sword",
+      "title": "rook sword",
+      "src": "gallery/Rook Sword.gif",
+      "tags": ["rook", "gif"]
+    },
+    {
+      "id": "rook-palm",
+      "title": "rook palm",
+      "src": "gallery/Rook Palm.gif",
+      "tags": ["rook", "gif"]
+    }
+  ]
+}

@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>sounds@funnydawg</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="../css/sounds.css" />
+</head>
+<body class="sounds-realm" data-site-root="..">
+  <a class="sounds-exit" href="../">← exit to zone</a>
+
+  <div class="term-window" role="application" aria-label="Sound pack terminal">
+    <div class="term-titlebar">
+      <span class="term-titlebar-dots" aria-hidden="true"></span>
+      <span class="term-titlebar-title">sounds@funnydawg — pack browser</span>
+    </div>
+
+    <div class="term-layout">
+      <aside class="term-tree" aria-label="Packs">
+        <p class="term-tree-head">~/packs</p>
+        <ul id="pack-tree" class="term-tree-list"></ul>
+      </aside>
+
+      <div class="term-main">
+        <section class="term-scope-block" id="scope-panel" aria-label="Waveform monitor">
+          <div class="term-scope-head">
+            <span id="scope-mode-label">OSC — waveform</span>
+            <div class="term-scope-head-right">
+              <label class="term-scope-mode">
+                <span class="term-scope-mode-tag">mode</span>
+                <select id="scope-mode" class="term-scope-select" aria-label="Oscilloscope mode">
+                  <option value="waveform" selected>waveform</option>
+                  <option value="spectrum">spectrum</option>
+                  <option value="mirror">mirror</option>
+                  <option value="bars">bars</option>
+                  <option value="waterfall">waterfall</option>
+                  <option value="ascii">ascii</option>
+                </select>
+              </label>
+              <label class="term-scope-freeze">
+                <input type="checkbox" id="scope-freeze" />
+                freeze
+              </label>
+              <span id="scope-state" class="term-scope-state">idle</span>
+            </div>
+          </div>
+          <canvas
+            id="term-scope"
+            class="term-scope-canvas"
+            role="img"
+            aria-label="Audio waveform"
+          ></canvas>
+          <details class="term-drawer term-drawer--osc">
+            <summary>~ osc display</summary>
+          <div class="term-sliders term-sliders--osc" id="scope-sliders">
+            <label class="term-slider">
+              <span class="term-slider-label">SCOPE</span>
+              <input type="range" id="slider-scope-gain" min="0.4" max="3" step="0.05" value="1.2" />
+              <output id="out-scope-gain" for="slider-scope-gain">1.20</output>
+            </label>
+            <label class="term-slider">
+              <span class="term-slider-label">SMOOTH</span>
+              <input type="range" id="slider-smooth" min="0" max="0.95" step="0.05" value="0.75" />
+              <output id="out-smooth" for="slider-smooth">0.75</output>
+            </label>
+            <label class="term-slider">
+              <span class="term-slider-label">GRID</span>
+              <input type="range" id="slider-grid" min="0" max="1" step="1" value="1" />
+              <output id="out-grid" for="slider-grid">on</output>
+            </label>
+            <label class="term-slider">
+              <span class="term-slider-label">TRACE</span>
+              <input type="range" id="slider-trace" min="0" max="0.85" step="0.05" value="0.35" />
+              <output id="out-trace" for="slider-trace">0.35</output>
+            </label>
+            <label class="term-slider">
+              <span class="term-slider-label">HUE</span>
+              <input type="range" id="slider-hue" min="0" max="360" step="1" value="130" />
+              <output id="out-hue" for="slider-hue">130°</output>
+            </label>
+          </div>
+          </details>
+          <div class="term-fx-head">
+            <span>FX BUS</span>
+            <button type="button" class="term-btn term-btn--small" id="btn-reset-fx">[reset fx]</button>
+          </div>
+          <div class="term-sliders term-sliders--fx" id="fx-sliders">
+            <label class="term-slider">
+              <span class="term-slider-label">GAIN</span>
+              <input type="range" id="slider-audio-gain" min="0.25" max="2" step="0.05" value="1" />
+              <output id="out-audio-gain" for="slider-audio-gain">1.00</output>
+            </label>
+            <label class="term-slider">
+              <span class="term-slider-label">CHORUS</span>
+              <input type="range" id="slider-chorus" min="0" max="100" step="1" value="0" />
+              <output id="out-chorus" for="slider-chorus">0%</output>
+            </label>
+            <label class="term-slider">
+              <span class="term-slider-label">CHRATE</span>
+              <input type="range" id="slider-chorus-rate" min="0.2" max="5" step="0.1" value="1.5" />
+              <output id="out-chorus-rate" for="slider-chorus-rate">1.5Hz</output>
+            </label>
+            <label class="term-slider">
+              <span class="term-slider-label">REVERB</span>
+              <input type="range" id="slider-reverb" min="0" max="100" step="1" value="0" />
+              <output id="out-reverb" for="slider-reverb">0%</output>
+            </label>
+            <label class="term-slider">
+              <span class="term-slider-label">CUTOFF</span>
+              <input type="range" id="slider-filter" min="0" max="100" step="1" value="100" />
+              <output id="out-filter" for="slider-filter">open</output>
+            </label>
+          </div>
+        </section>
+
+        <div class="term-synth" aria-label="Chord synth">
+          <p class="term-synth-line">
+            synth@bus:~$ <kbd>1</kbd>–<kbd>7</kbd> or hold <kbd>gate</kbd> · key + degree → chord ·
+            <span id="synth-chord-label" class="term-synth-chord">C — I</span>
+          </p>
+          <div class="term-synth-row">
+            <label class="term-synth-field">
+              <span class="term-synth-tag">key</span>
+              <select id="synth-key" class="term-scope-select" aria-label="Root key">
+                <option value="0" selected>C</option>
+                <option value="1">C♯</option>
+                <option value="2">D</option>
+                <option value="3">E♭</option>
+                <option value="4">E</option>
+                <option value="5">F</option>
+                <option value="6">F♯</option>
+                <option value="7">G</option>
+                <option value="8">A♭</option>
+                <option value="9">A</option>
+                <option value="10">B♭</option>
+                <option value="11">B</option>
+              </select>
+            </label>
+            <select id="synth-voice" class="term-scope-select" aria-label="Chord type">
+              <option value="diatonic" selected>diatonic</option>
+              <option value="maj">maj</option>
+              <option value="min">min</option>
+              <option value="maj7">maj7</option>
+              <option value="min7">min7</option>
+              <option value="dom7">7</option>
+              <option value="sus2">sus2</option>
+              <option value="sus4">sus4</option>
+            </select>
+            <select id="synth-wave" class="term-scope-select" aria-label="Waveform">
+              <option value="sine">sine</option>
+              <option value="triangle">tri</option>
+              <option value="sawtooth" selected>saw</option>
+              <option value="square">square</option>
+            </select>
+            <button type="button" class="term-btn" id="synth-gate">[gate]</button>
+          </div>
+          <div class="term-degree-strip" id="synth-degrees" role="group" aria-label="Scale degree"></div>
+          <details class="term-drawer term-drawer--synth">
+            <summary>~ synth engine</summary>
+            <div class="term-sliders term-sliders--synth" id="synth-engine-sliders">
+              <label class="term-slider">
+                <span class="term-slider-label">CUT</span>
+                <input type="range" id="slider-synth-cutoff" min="0" max="100" step="1" value="72" />
+                <output id="out-synth-cutoff" for="slider-synth-cutoff">6.2k</output>
+              </label>
+              <label class="term-slider">
+                <span class="term-slider-label">RES</span>
+                <input type="range" id="slider-synth-res" min="0" max="100" step="1" value="22" />
+                <output id="out-synth-res" for="slider-synth-res">1.2</output>
+              </label>
+              <label class="term-slider">
+                <span class="term-slider-label">ATK</span>
+                <input type="range" id="slider-synth-attack" min="0.005" max="0.4" step="0.005" value="0.03" />
+                <output id="out-synth-attack" for="slider-synth-attack">0.03</output>
+              </label>
+              <label class="term-slider">
+                <span class="term-slider-label">REL</span>
+                <input type="range" id="slider-synth-release" min="0.03" max="1.2" step="0.01" value="0.14" />
+                <output id="out-synth-release" for="slider-synth-release">0.14</output>
+              </label>
+              <label class="term-slider">
+                <span class="term-slider-label">LVL</span>
+                <input type="range" id="slider-synth-level" min="0.05" max="0.45" step="0.01" value="0.2" />
+                <output id="out-synth-level" for="slider-synth-level">0.20</output>
+              </label>
+              <label class="term-slider">
+                <span class="term-slider-label">SPRD</span>
+                <input type="range" id="slider-synth-detune" min="0" max="24" step="1" value="6" />
+                <output id="out-synth-detune" for="slider-synth-detune">6¢</output>
+              </label>
+            </div>
+          </details>
+        </div>
+
+        <section class="term-cd" aria-label="Sample listing">
+          <p id="term-prompt" class="term-prompt">sounds@funnydawg:~$</p>
+          <div id="term-samples" class="term-samples" role="list"></div>
+        </section>
+
+        <section class="term-controls" aria-label="Transport">
+          <button type="button" class="term-btn" id="term-stop">[stop]</button>
+          <label class="term-loop">
+            <input type="checkbox" id="term-loop" />
+            loop
+          </label>
+          <label class="term-slider term-slider--bpm" id="bpm-wrap">
+            <span class="term-slider-label">BPM</span>
+            <input type="range" id="slider-bpm" min="60" max="200" step="1" value="120" />
+            <output id="out-bpm" for="slider-bpm">120</output>
+          </label>
+          <p id="term-status" class="term-status" role="status"></p>
+        </section>
+
+        <section class="term-dl" id="downloads" aria-label="Download pack">
+          <p class="term-dl-head">wget</p>
+          <div id="term-download" class="term-download"></div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/sounds-page.js" defer></script>
+</body>
+</html>

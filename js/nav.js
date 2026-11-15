@@ -29,6 +29,7 @@ function initNav() {
     { href: homeHref, label: "Home" },
     { href: `${base}comics/`, label: "Comics" },
     { href: `${base}art/`, label: "Art" },
+    { href: `${base}sprites/`, label: "Sprites" },
     { href: `${base}about/`, label: "About" },
   ];
 

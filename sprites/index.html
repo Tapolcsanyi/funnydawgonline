@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>sprites@funnydawg</title>
+  <link rel="stylesheet" href="../css/sprites.css" />
+</head>
+<body class="sprites-realm" data-site-root="..">
+  <a class="sprites-exit" href="../">← exit</a>
+  <div class="sprites-cursor-dot" id="sprites-cursor-dot" aria-hidden="true"></div>
+
+  <div class="sprites-window">
+    <header class="sprites-head">
+      <h1>sprite vault</h1>
+      <p>drop 4×4 sheets in <code>sprites/gallery/</code> · one entry per file in <code>data/sprites.json</code></p>
+    </header>
+
+    <div class="sprites-layout">
+      <ul id="sprites-list" class="sprites-list" aria-label="Sprite list"></ul>
+      <section class="sprites-stage" aria-label="Preview">
+        <p id="sprites-meta" class="sprites-meta">—</p>
+        <div class="sprites-canvas-wrap">
+          <canvas id="sprites-canvas" width="256" height="256" aria-label="Sprite sheet preview"></canvas>
+          <img
+            id="sprites-gif"
+            class="sprites-gif"
+            alt=""
+            width="256"
+            height="256"
+            hidden
+          />
+        </div>
+        <div class="sprites-direction" id="sprites-direction" role="group" aria-label="Facing direction"></div>
+        <div class="sprites-controls">
+          <label>
+            fps
+            <input type="range" id="sprites-fps" min="1" max="24" step="1" value="8" />
+            <output id="sprites-fps-out" for="sprites-fps">8</output>
+          </label>
+          <label>
+            zoom
+            <input type="range" id="sprites-scale" min="2" max="12" step="1" value="4" />
+            <output id="sprites-scale-out" for="sprites-scale">4×</output>
+          </label>
+        </div>
+        <div id="sprites-tags" class="sprites-tags"></div>
+      </section>
+    </div>
+  </div>
+
+  <script src="../js/sprites-page.js" defer></script>
+</body>
+</html>

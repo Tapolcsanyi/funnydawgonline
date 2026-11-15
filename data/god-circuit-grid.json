@@ -1,0 +1,14 @@
+{
+  "gridSize": 10,
+  "passageRepeat": 16,
+  "vantexCell": { "row": 7, "col": 7 },
+  "vantexHref": "vantex/index.html",
+  "gridImage": "assets/frame4.png",
+  "externalLinks": [
+    "https://zayahx9.itch.io/the-archive-room",
+    "https://www.funnydawg.online/",
+    "https://soundcloud.com/zayahx9",
+    "https://www.instagram.com/zayah.tapolcsanyi/",
+    "https://www.linkedin.com/in/isaiah-tap/"
+  ]
+}

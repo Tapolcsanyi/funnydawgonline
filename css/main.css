@@ -171,6 +171,10 @@ body::after {
   overflow: hidden;
 }
 
+.box-stickers a.sticker {
+  pointer-events: auto;
+}
+
 .sticker {
   position: absolute;
   padding: 3px 8px;
@@ -203,6 +207,43 @@ body::after {
   color: #fff;
   background: var(--hot-pink);
   transform: rotate(-14deg);
+}
+
+a.sticker-gate-mirror {
+  pointer-events: auto;
+  text-decoration: none;
+  cursor: crosshair;
+}
+
+a.sticker-gate-mirror:hover {
+  filter: contrast(1.4) saturate(0.4);
+  color: #e8e8e8;
+}
+
+.clutter-static-gate {
+  color: inherit;
+  text-decoration: none;
+}
+
+.clutter-static-gate:hover {
+  color: var(--text-counter);
+  letter-spacing: 0.04em;
+}
+
+.clutter-eyes-gate {
+  color: inherit;
+  text-decoration: none;
+  opacity: 0.92;
+}
+
+.clutter-eyes-gate:hover {
+  color: #886;
+  letter-spacing: 0.06em;
+}
+
+.clutter-sprites-gate {
+  font-family: var(--font-comic);
+  letter-spacing: 0.08em;
 }
 
 .box-layout {
@@ -801,6 +842,28 @@ a.nav-btn:focus-visible {
   font-size: 0.88em;
   font-style: italic;
   text-decoration: none;
+}
+
+.clutter-sounds-gate {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  border-radius: 6px;
+  line-height: 0;
+  text-decoration: none;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+
+.clutter-sounds-gate:hover {
+  background: rgba(94, 234, 212, 0.2);
+  transform: scale(1.05);
+}
+
+.clutter-sounds-gate img {
+  display: block;
+  width: 40px;
+  height: auto;
 }
 
 .media-header h1 {

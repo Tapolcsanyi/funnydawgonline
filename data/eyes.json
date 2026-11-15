@@ -1,0 +1,39 @@
+{
+  "default": "solar",
+  "strobe": {
+    "minMs": 5,
+    "maxMs": 85
+  },
+  "center": {
+    "src": "VeparSeal.png",
+    "size": "min(72vmin, 420px)",
+    "rotateSec": 16,
+    "href": "../BP/"
+  },
+  "backgrounds": [
+    {
+      "id": "void",
+      "title": "void",
+      "src": "backgrounds/eyeWallTransparent.png",
+      "base": "#000000",
+      "repeat": "repeat",
+      "size": "512px auto"
+    },
+    {
+      "id": "flesh",
+      "title": "flesh",
+      "src": "backgrounds/eyeWallMeat.png",
+      "base": "#1a0505",
+      "repeat": "repeat",
+      "size": "480px auto"
+    },
+    {
+      "id": "solar",
+      "title": "solar",
+      "src": "backgrounds/SolarizeEyEWall.png",
+      "base": "#140808",
+      "repeat": "repeat",
+      "size": "520px auto"
+    }
+  ]
+}

@@ -52,12 +52,23 @@ function initClutter() {
     </div>
     <div class="clutter-widget clutter-widget--optional">
       <h3>now playing</h3>
-      <p class="clutter-mono">nothing.mp3</p>
+      <p>
+        <a href="${base}static/" class="clutter-static-gate clutter-mono">nothing.mp3</a>
+      </p>
+      <p>
+        <a href="${base}eyes/" class="clutter-eyes-gate clutter-mono">blink.gif</a>
+      </p>
     </div>
     <div class="clutter-widget clutter-widget--optional">
       <h3>cool links</h3>
       <p><a href="${base}comics/">→ comics</a></p>
       <p><a href="${base}art/">→ art</a></p>
+      <p>
+        <a href="${base}sounds/" class="clutter-sounds-gate" aria-label="Sounds">
+          <img src="${base}single8thNote.png" alt="" width="40" height="40" decoding="async" />
+        </a>
+      </p>
+      <p><a href="${base}sprites/" class="clutter-sprites-gate">→ sprites</a></p>
       <p><a href="#">guestbook (soon)</a></p>
     </div>
     <div class="clutter-badge">
@@ -72,7 +83,7 @@ function initClutter() {
     stickers.innerHTML = `
       <span class="sticker sticker--new blink">NEW!!!</span>
       <span class="sticker sticker--yum">YUM</span>
-      <span class="sticker sticker--wow">WOW</span>
+      <a href="${base}mirror/" class="sticker sticker--wow sticker-gate-mirror" title="?">WOW</a>
     `;
   }
 
