@@ -55,9 +55,6 @@ function initClutter() {
       <p>
         <a href="${base}static/" class="clutter-static-gate clutter-mono">nothing.mp3</a>
       </p>
-      <p>
-        <a href="${base}eyes/" class="clutter-eyes-gate clutter-mono">blink.gif</a>
-      </p>
     </div>
     <div class="clutter-widget clutter-widget--optional">
       <h3>cool links</h3>
