@@ -1451,7 +1451,7 @@ body.media-modal-open {
   }
 
   .clutter-widget--optional {
-    display: none;
+    grid-column: 1 / -1;
   }
 
   .clutter-badge {
