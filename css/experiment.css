@@ -1,0 +1,117 @@
+body.experiment-realm {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Rock Salt", "Caveat", "Segoe Print", cursive;
+  font-size: clamp(1.15rem, 2.2vw, 1.65rem);
+  line-height: 2.05;
+  letter-spacing: 0.04em;
+  word-spacing: 0.14em;
+  color: #000;
+  background-color: #080a08;
+  background-image: url("../experiment/assets/lost.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+/* 64×64 tile frame around the text body (swap border-tile.svg later) */
+.experiment-mosaic {
+  --experiment-tile: url("../experiment/assets/border-tile.png");
+  --experiment-tile-size: 64px;
+  --experiment-tile-gap: 4px;
+  --experiment-tile-stride: calc(var(--experiment-tile-size) + var(--experiment-tile-gap));
+  display: grid;
+  gap: var(--experiment-tile-gap);
+  grid-template-columns: var(--experiment-tile-size) minmax(0, 1fr) var(--experiment-tile-size);
+  grid-template-rows: var(--experiment-tile-size) minmax(0, 1fr) var(--experiment-tile-size);
+  grid-template-areas:
+    "nw north ne"
+    "west  body east"
+    "sw south se";
+  width: 100%;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.experiment-tile--nw {
+  grid-area: nw;
+}
+
+.experiment-tile--north {
+  grid-area: north;
+}
+
+.experiment-tile--ne {
+  grid-area: ne;
+}
+
+.experiment-tile--west {
+  grid-area: west;
+}
+
+.experiment-tile--east {
+  grid-area: east;
+}
+
+.experiment-tile--sw {
+  grid-area: sw;
+}
+
+.experiment-tile--south {
+  grid-area: south;
+}
+
+.experiment-tile--se {
+  grid-area: se;
+}
+
+.experiment-wall {
+  grid-area: body;
+}
+
+.experiment-tile--corner {
+  background-color: transparent;
+  background-image: var(--experiment-tile);
+  background-repeat: no-repeat;
+  background-position: left top;
+  background-size: var(--experiment-tile-size) var(--experiment-tile-size);
+}
+
+.experiment-tile--edge {
+  background-color: transparent;
+  background-image: var(--experiment-tile);
+  background-position: left top;
+}
+
+.experiment-tile--edge.experiment-tile--north,
+.experiment-tile--edge.experiment-tile--south {
+  background-repeat: repeat-x;
+  background-size: var(--experiment-tile-stride) var(--experiment-tile-size);
+  min-height: var(--experiment-tile-size);
+}
+
+.experiment-tile--edge.experiment-tile--west,
+.experiment-tile--edge.experiment-tile--east {
+  background-repeat: repeat-y;
+  background-size: var(--experiment-tile-size) var(--experiment-tile-stride);
+  min-width: var(--experiment-tile-size);
+}
+
+.experiment-wall {
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0;
+  padding: clamp(2rem, 5vw, 3.5rem) clamp(1.25rem, 4vw, 3.25rem) clamp(3rem, 8vw, 5rem);
+  background: transparent;
+}
+
+.experiment-wall p {
+  margin: 0 0 2.25em;
+  max-width: none;
+  text-wrap: pretty;
+}
+
+.experiment-wall p:last-child {
+  margin-bottom: 0;
+}

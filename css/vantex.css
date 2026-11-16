@@ -190,3 +190,129 @@ body.vantex-site {
   font-size: 12px;
   opacity: 0.85;
 }
+
+.vantex-founders {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  margin-top: 28px;
+}
+
+.vantex-founder {
+  display: grid;
+  grid-template-columns: 140px minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+  padding: 16px 0;
+  border-top: 1px solid #d0d8e0;
+}
+
+.vantex-founder--lead {
+  grid-template-columns: 160px minmax(0, 1fr);
+}
+
+.vantex-founder-portrait {
+  display: block;
+  line-height: 0;
+  border: 1px solid #d0d8e0;
+  background: #fff;
+  overflow: hidden;
+}
+
+.vantex-founder-portrait img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+a.vantex-founder-portrait:hover img {
+  opacity: 0.92;
+}
+
+.vantex-founder h3 {
+  margin: 0 0 4px;
+  font-size: 1.1rem;
+  color: #0c2340;
+}
+
+.vantex-founder-role {
+  margin: 0 0 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #0c4a7a;
+}
+
+.vantex-founder p {
+  margin: 0 0 0.65em;
+  font-size: 14px;
+}
+
+@media (max-width: 560px) {
+  .vantex-founder,
+  .vantex-founder--lead {
+    grid-template-columns: 1fr;
+  }
+
+  .vantex-founder-portrait {
+    max-width: 180px;
+  }
+}
+
+.vantex-engineers {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px 20px;
+  margin-top: 24px;
+}
+
+.vantex-engineer {
+  text-align: center;
+}
+
+.vantex-engineer-portrait {
+  line-height: 0;
+  border: 1px solid #d0d8e0;
+  background: #fff;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.vantex-engineer-portrait img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.vantex-engineer h3 {
+  margin: 0 0 4px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #0c2340;
+}
+
+.vantex-engineer-title {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.35;
+  color: #0c4a7a;
+  font-weight: 600;
+}
+
+@media (max-width: 720px) {
+  .vantex-engineers {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 420px) {
+  .vantex-engineers {
+    grid-template-columns: 1fr;
+    max-width: 220px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
