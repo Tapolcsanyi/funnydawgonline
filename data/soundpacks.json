@@ -16,17 +16,18 @@
       ]
     },
     {
-      "id": "example-2",
-      "title": "Example 2",
-      "folder": "Example 2",
-      "description": "CMD drum one-shots.",
+      "id": "Loops",
+      "title": "Loops",
+      "folder": "Loops",
+      "description": "Random Minisynth loops cooked in FL.",
       "zipPath": "",
-      "sizeLabel": "4 samples",
+      "sizeLabel": "few samples",
       "files": [
-        "CMD Kick.wav",
-        "CMD Snare.wav",
-        "CMD Clap.wav",
-        "CMD Hat.wav"
+        "A# Maj 90 bpm.wav",
+        "D Maj 110 bpm.wav",
+        "D# Maj 120 bpm.wav",
+        "F Maj 140 bpm.wav",
+        "F# Maj 140 bpm.wav"
       ]
     }
   ]
