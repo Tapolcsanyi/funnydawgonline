@@ -1,0 +1,70 @@
+html,
+body.entity-realm {
+  margin: 0;
+  min-height: 100vh;
+  background: #000;
+  color: #000;
+}
+
+.entity-whisper {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  margin: 0;
+  padding: 8px 10px;
+  overflow: hidden;
+  font-family: ui-monospace, "Courier New", monospace;
+  font-size: 12px;
+  line-height: 1.35;
+  letter-spacing: 0.03em;
+  color: #0a0a0a;
+  background: #000;
+  user-select: text;
+  cursor: text;
+  word-break: break-word;
+}
+
+.entity-whisper::selection {
+  color: #9a9a9a;
+  background: #242424;
+}
+
+.entity-stage {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 24px;
+  box-sizing: border-box;
+  pointer-events: none;
+}
+
+.entity-scare-link {
+  display: block;
+  line-height: 0;
+  border: none;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+  pointer-events: auto;
+  max-width: min(60vw, 220px);
+}
+
+.entity-scare-link img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 85vh;
+  object-fit: contain;
+}
+
+.entity-scare-link:hover img {
+  filter: brightness(1.05);
+}
+
+.entity-scare-link:focus-visible {
+  outline: 1px solid #333;
+  outline-offset: 6px;
+}

@@ -1,4 +1,8 @@
 body.experiment-realm {
+  --experiment-tile: url("../experiment/assets/border-tile.png");
+  --experiment-tile-size: 64px;
+  --experiment-tile-gap: 4px;
+  --experiment-tile-stride: calc(var(--experiment-tile-size) + var(--experiment-tile-gap));
   margin: 0;
   min-height: 100vh;
   font-family: "Rock Salt", "Caveat", "Segoe Print", cursive;
@@ -96,6 +100,30 @@ body.experiment-realm {
   background-repeat: repeat-y;
   background-size: var(--experiment-tile-size) var(--experiment-tile-stride);
   min-width: var(--experiment-tile-size);
+}
+
+/* 9th eye on left: NW corner (#1) + 8th tile in west column */
+.experiment-left-gate {
+  --gate-index: 9;
+  position: fixed;
+  z-index: 50;
+  left: 0;
+  top: calc(
+    var(--experiment-tile-size) + var(--experiment-tile-gap) +
+      (var(--gate-index) - 2) * var(--experiment-tile-stride)
+  );
+  width: var(--experiment-tile-size);
+  height: var(--experiment-tile-size);
+  background-color: transparent;
+  background-image: var(--experiment-tile);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: var(--experiment-tile-size) var(--experiment-tile-size);
+  cursor: pointer;
+}
+
+.experiment-left-gate:hover {
+  filter: brightness(1.15);
 }
 
 .experiment-wall {

@@ -1,6 +1,186 @@
 {
-  "_note": "folder is relative to sounds/. files are exact filenames in that folder.",
   "packs": [
+    {
+      "id": "pocket-1",
+      "title": "$POCKET1",
+      "folder": "$POCKET1",
+      "description": "Sounds made on PO-33 and Minisynth. All loops contain stems.",
+      "zipPath": "sounds/$POCKET1.zip",
+      "sizeLabel": "108 samples",
+      "tree": {
+        "name": "",
+        "children": [
+          {
+            "name": "Loops",
+            "files": [
+              "A Maj 150 bpm.wav",
+              "A# Maj 140 bpm.wav",
+              "A# Maj 90 bpm.wav",
+              "C Maj 130 bpm.wav",
+              "C# Maj 120 bpm.wav",
+              "C# Maj 95 bpm.wav",
+              "D Maj 110 bpm.wav",
+              "D Maj 115bpm.wav",
+              "D# Maj 100 bpm.wav",
+              "D# Maj 120 bpm.wav",
+              "E Maj 120 bpm.wav",
+              "F Maj 140 bpm.wav",
+              "F# Maj 110 bpm.wav",
+              "F# Maj 140 bpm.wav",
+              "G Maj 130 bpm.wav",
+              "g min 120 bpm.wav",
+              "G# Maj 120 bpm.wav"
+            ]
+          },
+          {
+            "name": "Sounds",
+            "children": [
+              {
+                "name": "808",
+                "files": [
+                  "Coral 808.wav",
+                  "Feedback 808.wav",
+                  "Lead 808.wav",
+                  "Lush 808.wav",
+                  "Organ 808.wav",
+                  "Short Brass 808.wav",
+                  "Stolen 808.wav",
+                  "Subby 808.wav",
+                  "Surfing 808.wav"
+                ]
+              },
+              {
+                "name": "Clap",
+                "files": [
+                  "Airy Clap.wav",
+                  "Annoying Clap.wav",
+                  "Cheeto Clap.wav",
+                  "CMD Clap.wav",
+                  "Dongle Clap.wav",
+                  "Filtered Clap.wav",
+                  "Keys Clap.wav",
+                  "Krush Clap.wav",
+                  "Layered Clap.wav",
+                  "Layered Key Clap.wav",
+                  "Normal Clap.wav",
+                  "Pocket Clap.wav",
+                  "Snap Clap.wav",
+                  "Tiny Clap.wav",
+                  "Waterfall Clap.wav",
+                  "Zay Clap.wav"
+                ]
+              },
+              {
+                "name": "Crash",
+                "files": [
+                  "Epic Crash.wav",
+                  "Freaky Crash.wav",
+                  "Idk Crash.wav",
+                  "Low Crash.wav",
+                  "Splash Crash.wav"
+                ]
+              },
+              {
+                "name": "FX",
+                "files": [
+                  "Ascending Scratch.wav",
+                  "Feedback Impact.wav",
+                  "Flowey Talk.wav",
+                  "Reverse Squeak Riser.wav",
+                  "Short Riser.wav",
+                  "Space Thing.wav",
+                  "Thick Impact.wav"
+                ]
+              },
+              {
+                "name": "Hat",
+                "files": [
+                  "Click Hat.wav",
+                  "CMD Hat.wav",
+                  "Evil Hat.wav",
+                  "Expert Hat.wav",
+                  "Feedback Hat.wav",
+                  "Fuzzy Hat.wav",
+                  "Glitch Hat.wav",
+                  "Metal Hat.wav",
+                  "Perfect Hat.wav",
+                  "Raw Hat.wav",
+                  "Scratch Hat.wav",
+                  "Shaker Hat.wav",
+                  "Short Hat.wav",
+                  "Squeaky Hat.wav",
+                  "Teeny Hat.wav",
+                  "Waterfall Hat.wav"
+                ]
+              },
+              {
+                "name": "Kick",
+                "files": [
+                  "Bumping Kick.wav",
+                  "Cheeto Kick.wav",
+                  "CMD Kick.wav",
+                  "Crazy Kick.wav",
+                  "Cushion Kick.wav",
+                  "Deep Kick.wav",
+                  "Drop Kick.wav",
+                  "Evil Kick.wav",
+                  "Ghost Kick.wav",
+                  "Layered Kick.wav",
+                  "Marimba Kick.wav",
+                  "Plastic Kick.wav",
+                  "Pocket Kick 1.wav",
+                  "Pocket Kick 2.wav",
+                  "Pumpkin Kick.wav",
+                  "Sine Kick.wav",
+                  "Subby Kick.wav",
+                  "Thick Kick.wav",
+                  "Thumpy Kick.wav"
+                ]
+              },
+              {
+                "name": "OHat",
+                "files": [
+                  "Evil OHat.wav",
+                  "Layered OHat.wav"
+                ]
+              },
+              {
+                "name": "Ride",
+                "files": [
+                  "Bottle Ride.wav",
+                  "Click Ride.wav",
+                  "Pot Ride.wav"
+                ]
+              },
+              {
+                "name": "Snare",
+                "files": [
+                  "Chair Snare.wav",
+                  "Cheeto Snare.wav",
+                  "CMD Snare.wav",
+                  "Doot Snare.wav",
+                  "Evil Snare.wav",
+                  "Frog Snare.wav",
+                  "Glass Snare.wav",
+                  "Middle Snare.wav",
+                  "Scary Snare.wav",
+                  "Static Snare.wav",
+                  "Waterfall Snare.wav",
+                  "Weird Snare.wav"
+                ]
+              },
+              {
+                "name": "Tom",
+                "files": [
+                  "Glass Tom.wav",
+                  "Pumpkin Tom.wav"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
     {
       "id": "example-1",
       "title": "Example 1",
@@ -8,31 +188,15 @@
       "description": "CMD drum one-shots.",
       "zipPath": "",
       "sizeLabel": "4 samples",
-      "files": [
-        "CMD Kick.wav",
-        "CMD Snare.wav",
-        "CMD Clap.wav",
-        "CMD Hat.wav"
-      ]
-    },
-    {
-      "id": "Loops",
-      "title": "Loops",
-      "folder": "Loops",
-      "description": "Random Minisynth loops cooked in FL.",
-      "zipPath": "",
-      "sizeLabel": "few samples",
-      "files": [
-        "A# Maj 90 bpm.wav",
-        "D Maj 110 bpm.wav",
-        "D# Maj 120 bpm.wav",
-        "F Maj 140 bpm.wav",
-        "F# Maj 140 bpm.wav",
-        "C# Maj 120 bpm.wav",
-        "D# Maj 100 bpm.wav",
-        "E Maj 120 bpm.wav",
-        "A Maj 150 bpm.wav"
-      ]
+      "tree": {
+        "name": "",
+        "files": [
+          "CMD Kick.wav",
+          "CMD Snare.wav",
+          "CMD Clap.wav",
+          "CMD Hat.wav"
+        ]
+      }
     }
   ]
 }

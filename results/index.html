@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+  <title>Vantex Admin — incident logs</title>
+  <link rel="icon" href="../vantex/assets/vantex-favicon.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="../css/results.css" />
+</head>
+<body class="results-realm">
+  <a class="results-exit" href="../">← home</a>
+
+  <div class="results-window" role="application" aria-label="Vantex Admin archive console">
+    <div class="results-titlebar">
+      <span class="results-titlebar-dots" aria-hidden="true"></span>
+      <span>Vantex Admin — engineer log archive</span>
+    </div>
+
+    <div class="results-layout">
+      <aside class="results-index" aria-label="Log index">
+        <p class="results-prompt">vantex-admin@archive:~/engineer/logs$ ls -1</p>
+        <ul id="results-log-list" class="results-log-list"></ul>
+      </aside>
+
+      <section class="results-viewer" aria-label="Log viewer">
+        <p id="results-viewer-head" class="results-viewer-head">vantex-admin@archive:~/engineer/logs$ ls</p>
+        <h1 id="results-viewer-title" class="results-viewer-title">—</h1>
+        <pre id="results-viewer-body" class="results-viewer-body results-viewer-body--idle">select a log file from the index ←</pre>
+        <p id="results-status" class="results-status">12 entries · 4 partial restores · remainder redacted.</p>
+      </section>
+    </div>
+  </div>
+
+  <script src="../js/results-page.js" defer></script>
+</body>
+</html>

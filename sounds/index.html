@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>sounds@funnydawg</title>
+  <link rel="icon" href="../single8thNote.png" type="image/png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -12,8 +13,9 @@
   />
   <link rel="stylesheet" href="../css/sounds.css" />
 </head>
-<body class="sounds-realm" data-site-root="..">
+<body class="sounds-realm sounds-realm--packs" data-site-root="..">
   <a class="sounds-exit" href="../">← exit to zone</a>
+  <a class="sounds-entity-gate" href="entity/" aria-hidden="true" tabindex="-1"><span class="u-sr"> </span></a>
 
   <div class="term-window" role="application" aria-label="Sound pack terminal">
     <div class="term-titlebar">
@@ -22,12 +24,51 @@
     </div>
 
     <div class="term-layout">
-      <aside class="term-tree" aria-label="Packs">
-        <p class="term-tree-head">~/packs</p>
-        <ul id="pack-tree" class="term-tree-list"></ul>
+      <aside class="term-tree" aria-label="Packs and samples">
+        <p class="term-tree-head" id="pack-tree-head">~/packs</p>
+        <ul id="pack-tree" class="term-tree-list term-tree-list--nav"></ul>
       </aside>
 
       <div class="term-main">
+        <section class="term-pack-header" id="term-pack-header" aria-label="Selected pack">
+          <div class="term-pack-header-row">
+            <p class="term-pack-header-line" id="term-pack-title">pack: —</p>
+            <div class="term-mode-switch" role="tablist" aria-label="Main panel">
+              <button type="button" class="term-mode-btn is-active" id="mode-packs" role="tab" aria-selected="true">
+                [packs]
+              </button>
+              <button type="button" class="term-mode-btn" id="mode-synth" role="tab" aria-selected="false">
+                [synth]
+              </button>
+            </div>
+          </div>
+          <p class="term-pack-header-desc" id="term-pack-desc"></p>
+          <div class="term-pack-header-wget" id="term-pack-download"></div>
+        </section>
+
+        <div id="term-panel-packs" class="term-panel term-panel--packs">
+          <section class="term-cd" aria-label="Sample listing">
+            <p id="term-prompt" class="term-prompt">sounds@funnydawg:~$</p>
+            <p class="term-cd-hint" id="term-cd-hint">select a pack and sample ← in the file tree</p>
+          </section>
+
+          <section class="term-controls" aria-label="Transport">
+            <button type="button" class="term-btn" id="term-stop">[stop]</button>
+            <a class="term-btn term-btn--saveas" id="term-saveas" href="#" download hidden>saveas —</a>
+            <label class="term-loop">
+              <input type="checkbox" id="term-loop" />
+              loop
+            </label>
+            <label class="term-slider term-slider--bpm" id="bpm-wrap">
+              <span class="term-slider-label">BPM</span>
+              <input type="range" id="slider-bpm" min="60" max="200" step="1" value="120" />
+              <output id="out-bpm" for="slider-bpm">120</output>
+            </label>
+            <p id="term-status" class="term-status" role="status"></p>
+          </section>
+        </div>
+
+        <div id="term-panel-synth" class="term-panel term-panel--synth">
         <section class="term-scope-block" id="scope-panel" aria-label="Waveform monitor">
           <div class="term-scope-head">
             <span id="scope-mode-label">OSC — waveform</span>
@@ -197,30 +238,7 @@
             </div>
           </details>
         </div>
-
-        <section class="term-cd" aria-label="Sample listing">
-          <p id="term-prompt" class="term-prompt">sounds@funnydawg:~$</p>
-          <div id="term-samples" class="term-samples" role="list"></div>
-        </section>
-
-        <section class="term-controls" aria-label="Transport">
-          <button type="button" class="term-btn" id="term-stop">[stop]</button>
-          <label class="term-loop">
-            <input type="checkbox" id="term-loop" />
-            loop
-          </label>
-          <label class="term-slider term-slider--bpm" id="bpm-wrap">
-            <span class="term-slider-label">BPM</span>
-            <input type="range" id="slider-bpm" min="60" max="200" step="1" value="120" />
-            <output id="out-bpm" for="slider-bpm">120</output>
-          </label>
-          <p id="term-status" class="term-status" role="status"></p>
-        </section>
-
-        <section class="term-dl" id="downloads" aria-label="Download pack">
-          <p class="term-dl-head">wget</p>
-          <div id="term-download" class="term-download"></div>
-        </section>
+        </div>
       </div>
     </div>
   </div>

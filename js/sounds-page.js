@@ -3,7 +3,9 @@
   const scopeCanvas = document.getElementById("term-scope");
   const scopeState = document.getElementById("scope-state");
   const promptEl = document.getElementById("term-prompt");
-  const samplesEl = document.getElementById("term-samples");
+  const packTreeHeadEl = document.getElementById("pack-tree-head");
+  const modePacksEl = document.getElementById("mode-packs");
+  const modeSynthEl = document.getElementById("mode-synth");
   const stopBtn = document.getElementById("term-stop");
   const loopEl = document.getElementById("term-loop");
   const bpmWrap = document.getElementById("bpm-wrap");
@@ -11,6 +13,10 @@
   const outBpm = document.getElementById("out-bpm");
   const statusEl = document.getElementById("term-status");
   const downloadEl = document.getElementById("term-download");
+  const packDownloadEl = document.getElementById("term-pack-download");
+  const packTitleEl = document.getElementById("term-pack-title");
+  const packDescEl = document.getElementById("term-pack-desc");
+  const saveasEl = document.getElementById("term-saveas");
 
   const sliderScopeGain = document.getElementById("slider-scope-gain");
   const sliderSmooth = document.getElementById("slider-smooth");
@@ -57,13 +63,14 @@
   const outFilter = document.getElementById("out-filter");
   const resetFxBtn = document.getElementById("btn-reset-fx");
 
-  if (!treeEl || !scopeCanvas || !samplesEl) return;
+  if (!treeEl || !scopeCanvas) return;
 
   const root = document.body.dataset.siteRoot ? `${document.body.dataset.siteRoot}/` : "";
   const ctx = scopeCanvas.getContext("2d");
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   let packs = [];
   let selectedPackId = null;
+  let cwdSegments = [];
   let playingFile = null;
   let activeSampleFile = null;
   let audioCtx = null;
@@ -332,10 +339,33 @@
     return packs.find((p) => p.id === id) ?? null;
   }
 
-  function sampleSrc(pack, file) {
+  function packTree(pack) {
+    if (!pack) return { name: "", children: [] };
+    if (pack.tree) return pack.tree;
+    if (pack.files?.length) return { name: "", files: pack.files };
+    return { name: "", children: [] };
+  }
+
+  function resolveTreeNode(pack, segments) {
+    let node = packTree(pack);
+    for (const seg of segments) {
+      const next = (node.children || []).find((c) => c.name === seg);
+      if (!next) return null;
+      node = next;
+    }
+    return node;
+  }
+
+  function cwdPromptPath(pack) {
+    if (!pack) return "~";
+    const tail = cwdSegments.length ? `${cwdSegments.join("/")}/` : "";
+    return `~/packs/${pack.id}/${tail}`;
+  }
+
+  function sampleSrc(pack, file, segments = cwdSegments) {
     const folder = pack.folder.replace(/\\/g, "/").replace(/^\//, "");
-    const parts = folder.split("/").map(encodeURIComponent);
-    const rel = `${parts.join("/")}/${encodeURIComponent(file)}`;
+    const parts = folder.split("/").concat(segments).concat([file]).map(encodeURIComponent);
+    const rel = parts.join("/");
     try {
       return new URL(rel, window.location.href).href;
     } catch {
@@ -471,6 +501,10 @@
     updateChordLabel();
   }
 
+  function retuneSynthIfActive() {
+    tuneSynthChord({ audiblyActive: synthGateHeld });
+  }
+
   function applySynthEngineFromUi({ smooth = true } = {}) {
     const cutoffPct = Number(sliderSynthCutoff?.value ?? 72);
     const resPct = Number(sliderSynthRes?.value ?? 22);
@@ -553,9 +587,8 @@
       btn.textContent = label;
       btn.title = `degree ${i + 1}`;
       btn.addEventListener("click", () => {
-        clearKeyboardDegreeSelection();
         selectSynthDegree(i + 1);
-        syncSynthGate();
+        retuneSynthIfActive();
       });
       synthDegreesEl.appendChild(btn);
     });
@@ -670,7 +703,7 @@
 
   function setPlayingUi(file) {
     playingFile = file;
-    samplesEl.querySelectorAll(".term-sample-btn").forEach((btn) => {
+    treeEl.querySelectorAll(".term-tree-btn--file").forEach((btn) => {
       btn.classList.toggle("is-playing", Boolean(file && btn.dataset.file === file));
     });
   }
@@ -681,51 +714,192 @@
       promptEl.textContent = "sounds@funnydawg:~$";
       return;
     }
-    promptEl.textContent = `sounds@funnydawg:~/packs/${pack.id}/samples$ ls`;
+    promptEl.textContent = `sounds@funnydawg:${cwdPromptPath(pack)}$ ls`;
   }
 
-  function renderDownload(pack) {
-    if (!downloadEl) return;
-    downloadEl.replaceChildren();
+  function wgetHref(pack) {
+    if (!pack?.zipPath?.trim()) return "";
+    if (pack.zipPath.startsWith("http")) return pack.zipPath;
+    return `${root}${pack.zipPath.replace(/^\//, "")}`;
+  }
+
+  function fillWgetBlock(container, pack) {
+    if (!container) return;
+    container.replaceChildren();
     if (!pack) {
-      downloadEl.innerHTML = '<span class="term-dl-soon">— select a pack</span>';
+      container.innerHTML = '<span class="term-dl-soon">— select a pack</span>';
       return;
     }
-    const hasZip = Boolean(pack.zipPath?.trim());
-    if (hasZip) {
-      const href = pack.zipPath.startsWith("http")
-        ? pack.zipPath
-        : `${root}${pack.zipPath.replace(/^\//, "")}`;
+    const packLabel = pack.title || pack.id;
+    const href = wgetHref(pack);
+    if (href) {
       const a = document.createElement("a");
       a.href = href;
-      a.textContent = `wget ${pack.id}.zip`;
+      a.textContent = `Download Pack ${packLabel}`;
       a.download = "";
-      downloadEl.appendChild(a);
+      container.appendChild(a);
       if (pack.sizeLabel) {
         const meta = document.createElement("span");
         meta.className = "term-dl-soon";
         meta.textContent = `  (${pack.sizeLabel})`;
-        downloadEl.appendChild(meta);
+        container.appendChild(meta);
       }
     } else {
-      downloadEl.innerHTML = `<span class="term-dl-soon">wget ${pack.id}.zip — pending</span>`;
+      container.innerHTML = `<span class="term-dl-soon">Download Pack ${packLabel} — pending</span>`;
     }
+  }
+
+  function renderDownload(pack) {
+    if (downloadEl) fillWgetBlock(downloadEl, pack);
+    fillWgetBlock(packDownloadEl, pack);
+  }
+
+  function setMainMode(mode) {
+    const packs = mode === "packs";
+    document.body.classList.toggle("sounds-realm--packs", packs);
+    document.body.classList.toggle("sounds-realm--synth", !packs);
+    if (modePacksEl) {
+      modePacksEl.classList.toggle("is-active", packs);
+      modePacksEl.setAttribute("aria-selected", packs ? "true" : "false");
+    }
+    if (modeSynthEl) {
+      modeSynthEl.classList.toggle("is-active", !packs);
+      modeSynthEl.setAttribute("aria-selected", packs ? "false" : "true");
+    }
+  }
+
+  function bindMainMode() {
+    modePacksEl?.addEventListener("click", () => setMainMode("packs"));
+    modeSynthEl?.addEventListener("click", () => setMainMode("synth"));
+    setMainMode("packs");
+  }
+
+  function renderPackHeader(pack) {
+    if (packTitleEl) {
+      packTitleEl.textContent = pack ? `pack: ${pack.title || pack.id}` : "pack: —";
+    }
+    if (packDescEl) {
+      packDescEl.textContent = pack?.description || "";
+    }
+    renderDownload(pack);
+    updateSaveas();
+  }
+
+  function updateSaveas() {
+    if (!saveasEl) return;
+    const pack = packById(selectedPackId);
+    const file = activeSampleFile;
+    if (!pack || !file) {
+      saveasEl.hidden = false;
+      saveasEl.classList.add("is-disabled");
+      saveasEl.removeAttribute("href");
+      saveasEl.removeAttribute("download");
+      saveasEl.textContent = "[saveas —]";
+      return;
+    }
+    saveasEl.hidden = false;
+    saveasEl.classList.remove("is-disabled");
+    saveasEl.href = sampleSrc(pack, file);
+    saveasEl.download = file;
+    saveasEl.textContent = `[saveas ${file}]`;
+  }
+
+  function appendTreeButton(parent, { label, title, className = "", active = false, onClick, file = "" }) {
+    const li = document.createElement("li");
+    li.className = "term-tree-item";
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = `term-tree-btn${className ? ` ${className}` : ""}`;
+    btn.textContent = label;
+    if (title) btn.title = title;
+    if (file) btn.dataset.file = file;
+    btn.classList.toggle("is-active", active);
+    btn.addEventListener("click", onClick);
+    li.appendChild(btn);
+    parent.appendChild(li);
+  }
+
+  function navigateCwd(nextSegments) {
+    const pack = packById(selectedPackId);
+    if (!pack) return;
+    cwdSegments = nextSegments;
+    renderTree();
+    updatePrompt(pack);
+    setStatus(`cwd: ${cwdPromptPath(pack)}`);
+    updateSaveas();
+  }
+
+  function updateTreeHead(pack) {
+    if (!packTreeHeadEl) return;
+    if (!pack) {
+      packTreeHeadEl.textContent = "~/packs";
+      return;
+    }
+    const tail = cwdSegments.length ? `${cwdSegments.join("/")}/` : "";
+    packTreeHeadEl.textContent = `~/packs/${pack.id}/${tail}`;
   }
 
   function renderTree() {
     treeEl.replaceChildren();
     for (const pack of packs) {
-      const li = document.createElement("li");
-      li.className = "term-tree-item";
-      const btn = document.createElement("button");
-      btn.type = "button";
-      btn.className = "term-tree-btn";
-      btn.textContent = pack.title ? `${pack.title}` : pack.id;
-      btn.title = pack.id;
-      btn.classList.toggle("is-active", pack.id === selectedPackId);
-      btn.addEventListener("click", () => selectPack(pack.id));
-      li.appendChild(btn);
-      treeEl.appendChild(li);
+      appendTreeButton(treeEl, {
+        label: pack.title ? pack.title : pack.id,
+        title: pack.id,
+        className: "term-tree-btn--pack",
+        active: pack.id === selectedPackId && !cwdSegments.length,
+        onClick: () => selectPack(pack.id),
+      });
+    }
+
+    const pack = packById(selectedPackId);
+    updateTreeHead(pack);
+    if (!pack) return;
+
+    const node = resolveTreeNode(pack, cwdSegments);
+    if (!node) {
+      cwdSegments = [];
+      return renderTree();
+    }
+
+    const sep = document.createElement("li");
+    sep.className = "term-tree-sep";
+    sep.textContent = "samples";
+    treeEl.appendChild(sep);
+
+    if (cwdSegments.length) {
+      appendTreeButton(treeEl, {
+        label: "..",
+        className: "term-tree-btn--up",
+        title: "cd ..",
+        onClick: () => navigateCwd(cwdSegments.slice(0, -1)),
+      });
+    }
+
+    const folders = (node.children || []).slice().sort((a, b) => a.name.localeCompare(b.name));
+    for (const child of folders) {
+      const hasKids = Boolean(child.children?.length || child.files?.length);
+      if (!hasKids) continue;
+      const pathHere = [...cwdSegments, child.name];
+      appendTreeButton(treeEl, {
+        label: `${child.name}/`,
+        className: "term-tree-btn--folder",
+        title: pathHere.join("/"),
+        onClick: () => navigateCwd(pathHere),
+      });
+    }
+
+    const files = node.files ? [...node.files].sort((a, b) => a.localeCompare(b)) : [];
+    for (const file of files) {
+      appendTreeButton(treeEl, {
+        label: file,
+        className: "term-tree-btn--file",
+        title: file,
+        file,
+        active: playingFile === file,
+        onClick: () => playFile(file),
+      });
+      const lastBtn = treeEl.lastElementChild?.querySelector("button");
+      lastBtn?.classList.toggle("is-playing", playingFile === file);
     }
   }
 
@@ -751,7 +925,7 @@
     await resumeAudio();
     activeSampleFile = file;
     if (!audioEl.src || playingFile !== file) {
-      audioEl.src = sampleSrc(pack, file);
+      audioEl.src = sampleSrc(pack, file, cwdSegments);
     }
     setPlayingUi(file);
     try {
@@ -764,39 +938,18 @@
     return true;
   }
 
-  function renderSamples(pack) {
-    samplesEl.replaceChildren();
-    playingFile = null;
-    if (!pack?.files?.length) {
-      const empty = document.createElement("p");
-      empty.className = "term-dl-soon";
-      empty.textContent = "(empty directory)";
-      samplesEl.appendChild(empty);
-      return;
-    }
-    for (const file of pack.files) {
-      const btn = document.createElement("button");
-      btn.type = "button";
-      btn.className = "term-sample-btn";
-      btn.dataset.file = file;
-      btn.setAttribute("role", "listitem");
-      btn.textContent = file;
-      btn.addEventListener("click", () => playFile(file));
-      samplesEl.appendChild(btn);
-    }
-  }
-
   function selectPack(packId) {
     const pack = packById(packId);
     if (!pack) return;
     selectedPackId = packId;
+    cwdSegments = [];
     activeSampleFile = null;
     stopPlayback();
+    setMainMode("packs");
     renderTree();
     updatePrompt(pack);
-    renderSamples(pack);
-    renderDownload(pack);
-    setStatus(`cwd: ~/packs/${pack.id}/samples — click a file to play`);
+    renderPackHeader(pack);
+    setStatus(`cwd: ${cwdPromptPath(pack)} — pick a folder or sample ←`);
   }
 
   function stopPlayback() {
@@ -809,6 +962,7 @@
     audioEl.playbackRate = 1;
     refreshScopeState();
     setPlayingUi(null);
+    updateSaveas();
   }
 
   async function playFile(file) {
@@ -832,8 +986,9 @@
 
     stopPlayback();
     activeSampleFile = file;
-    audioEl.src = sampleSrc(pack, file);
+    audioEl.src = sampleSrc(pack, file, cwdSegments);
     setPlayingUi(file);
+    updateSaveas();
     audioEl.loop = false;
     audioEl.playbackRate = 1;
 
@@ -931,7 +1086,6 @@
       await resumeAudio();
       if (gen !== synthGateSyncGen || !synthGateRequested()) return;
       initSynth();
-      tuneSynthChord({ audiblyActive: false });
       if (gen !== synthGateSyncGen || !synthGateRequested()) return;
       setSynthGate(true);
       return;
@@ -1047,7 +1201,7 @@
     synthGateBtn?.addEventListener("pointercancel", closePointerGate);
     synthGateBtn?.addEventListener("lostpointercapture", closePointerGate);
 
-    const onChordChange = () => tuneSynthChord({ audiblyActive: synthGateHeld });
+    const onChordChange = () => retuneSynthIfActive();
     synthWave?.addEventListener("change", onChordChange);
     synthKey?.addEventListener("change", onChordChange);
     synthVoice?.addEventListener("change", onChordChange);
@@ -1500,6 +1654,7 @@
       return;
     }
     renderTree();
+    bindMainMode();
     if (packs[0]) selectPack(packs[0].id);
     bindSliders();
     bindSynth();
