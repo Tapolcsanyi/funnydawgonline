@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+  <title>Disappearance — Nashville Ledger</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Homemade+Apple&family=Reenie+Beanie&family=Special+Elite&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/board.css" />
+</head>
+<body class="desk-page">
+  <header class="desk-header">
+    <div>
+      <h1>Disappearance</h1>
+    </div>
+    <a href="../vantex/about-us/">← Vantex</a>
+  </header>
+
+  <div class="desk-room">
+    <main class="desk-surface">
+      <div class="desk-stage">
+        <aside class="desk-portraits" aria-label="Persons of interest">
+          <figure class="desk-portrait">
+            <img src="../vantex/assets/maria-vance.jpg" alt="Maria Vance" width="160" height="160" loading="lazy" decoding="async" />
+            <figcaption>Maria Vance — last seen at Oak Ridge HQ.</figcaption>
+          </figure>
+          <figure class="desk-portrait desk-portrait--grey">
+            <img src="../vantex/assets/jessica-reyes.png" alt="Jessica Reyes" width="200" height="200" loading="lazy" decoding="async" />
+            <figcaption>Jessica Reyes — Lead Computational Physicist. Still on the ledger at HQ. Missing since the incident.</figcaption>
+          </figure>
+          <figure class="desk-portrait desk-portrait--exec">
+            <img src="../vantex/assets/founder-2.jpg" alt="Daniel R. Whitford" width="140" height="140" loading="lazy" decoding="async" />
+            <figcaption>Daniel R. Whitford — Co-founder &amp; CIO. Speaking for Vantex when the Ledger calls.</figcaption>
+          </figure>
+        </aside>
+
+        <h2 class="u-sr" id="folder-label">Case folder</h2>
+
+        <div class="desk-folder-col">
+        <div class="case-folder-wrap">
+          <div class="case-folder" id="case-folder" aria-labelledby="folder-label">
+            <div class="case-folder-tab" aria-hidden="true">
+              <span class="case-folder-tab-title">Site 09</span>
+            </div>
+            <div class="case-folder-body">
+              <div class="folder-stack" id="folder-stack" role="group" aria-labelledby="folder-label">
+                <button type="button" class="stack-page stack-page--ledger" data-sheet="ledger-03" aria-label="Ledger clipping, Site 09 stable">
+                  <span class="stack-page-inner">
+                    <img src="assets/ledger-03.png" alt="" width="400" height="240" decoding="async" />
+                  </span>
+                </button>
+                <button type="button" class="stack-page stack-page--note" data-sheet="note-april" aria-label="Notes, April 17 at Vantex">
+                  <span class="stack-page-inner stack-page-inner--note">
+                    <span class="stack-page-title">What happened at Vantex?</span>
+                  </span>
+                </button>
+                <button type="button" class="stack-page stack-page--ledger" data-sheet="ledger-01" aria-label="Ledger clipping, CIO dismisses engineer">
+                  <span class="stack-page-inner">
+                    <img src="assets/ledger-01.png" alt="" width="400" height="240" decoding="async" />
+                  </span>
+                </button>
+                <button type="button" class="stack-page stack-page--note" data-sheet="note-where" aria-label="Notes, where did they go">
+                  <span class="stack-page-inner stack-page-inner--note">
+                    <span class="stack-page-title">Where did they go?</span>
+                  </span>
+                </button>
+                <button type="button" class="stack-page stack-page--ledger" data-sheet="ledger-02" aria-label="Ledger clipping, still here">
+                  <span class="stack-page-inner">
+                    <img src="assets/ledger-02.png" alt="" width="400" height="240" decoding="async" />
+                  </span>
+                </button>
+                <button type="button" class="stack-page stack-page--note" data-sheet="note-maria" aria-label="Notes, Maria Vance">
+                  <span class="stack-page-inner stack-page-inner--note">
+                    <span class="stack-page-title">Where is Maria Vance?</span>
+                  </span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="folder-reader" id="folder-reader" hidden>
+            <button type="button" class="sheet-back" id="sheet-back" aria-label="Return to folder">↩</button>
+
+            <article class="folder-sheet" id="sheet-ledger-01" data-sheet="ledger-01" hidden>
+              <div class="ledger-mag" data-mag>
+                <img src="assets/ledger-01.png" alt="Vantex CIO dismisses engineer's allegations after global energy spike" width="1200" height="900" loading="eager" decoding="async" />
+                <div class="mag-lens" aria-hidden="true"></div>
+              </div>
+            </article>
+
+            <article class="folder-sheet" id="sheet-ledger-02" data-sheet="ledger-02" hidden>
+              <div class="ledger-mag" data-mag>
+                <img src="assets/ledger-02.png" alt="They're not gone. They're still here." width="1200" height="900" loading="lazy" decoding="async" />
+                <div class="mag-lens" aria-hidden="true"></div>
+              </div>
+            </article>
+
+            <article class="folder-sheet" id="sheet-ledger-03" data-sheet="ledger-03" hidden>
+              <div class="ledger-mag" data-mag>
+                <img src="assets/ledger-03.png" alt="Vantex insists Site 09 stable; fifteen missing since March 11" width="1200" height="900" loading="lazy" decoding="async" />
+                <div class="mag-lens" aria-hidden="true"></div>
+              </div>
+            </article>
+
+            <article class="folder-sheet folder-sheet--note" id="sheet-note-where" data-sheet="note-where" hidden>
+              <h3 class="sheet-note-title">Where did they go?</h3>
+              <ul class="sheet-note-list">
+                <li>Fifteen researchers in the primary chamber when the spike hit. No checkout badges. No outbound convoy on the access logs.</li>
+                <li>Vantex says “extended leave.” Families say no calls, no location, no goodbye.</li>
+                <li>Could there be more to the site than was shown to us on the blueprints?</li>
+                <li>If they left voluntarily, why does Site 09 still register field occupancy in the whistleblower packet?</li>
+              </ul>
+            </article>
+
+            <article class="folder-sheet folder-sheet--note" id="sheet-note-maria" data-sheet="note-maria" hidden>
+              <h3 class="sheet-note-title">Where is Maria Vance?</h3>
+              <ul class="sheet-note-list">
+                <li>Founder &amp; CEO. Last confirmed at Oak Ridge headquarters — not on the March 11 Site 09 roster.</li>
+                <li>Not named among the fifteen in the Ledger, but three exec assistants stopped answering phones the same week.</li>
+                <li>Whitford's statement mentions “core leadership continuity.” It does not name her.</li>
+                <li>Did she travel to Site 09 on April 17? The internal shuttle manifest for that afternoon is missing from the FOIA bundle.</li>
+              </ul>
+            </article>
+
+            <article class="folder-sheet folder-sheet--note" id="sheet-note-april" data-sheet="note-april" hidden>
+              <h3 class="sheet-note-title">What happened that day at Vantex?</h3>
+              <ul class="sheet-note-list">
+                <li><strong>April 17.</strong> A seventeen-minute global energy spike.</li>
+                <li>Site 09 logs show a harmonic event at 14:37 CST. Vantex calls it a benign calibration artifact.</li>
+                <li>Researchers worldwide concerned about energy spike. Why was it so powerful and why is Vantex disregarding?</li>
+                <li>Whitford insists containment held. So why are the families still protesting?</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/board.js" defer></script>
+</body>
+</html>

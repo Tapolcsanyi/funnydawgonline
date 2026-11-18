@@ -1,0 +1,15 @@
+---
+description: Image links and image-buttons must not change appearance on hover unless explicitly requested
+globs: "**/*.{css,html,js}"
+alwaysApply: false
+---
+
+# Image links — no default hover highlight
+
+When adding or styling **image buttons** (links or controls where the hit target is primarily a photo, portrait, icon image, or clipping):
+
+- Do **not** apply hover styles that change **opacity**, **filter**, **brightness/contrast**, **scale**, or **background** on the image itself.
+- Hover may still change **cursor** (`pointer`, custom magnifier, etc.) and non-visual affordances (`outline` for keyboard focus only if needed).
+- If a page needs a deliberate hover effect on an image link, add a modifier class (e.g. `--hover-fx`) and document it in the PR/commit; do not use the default portrait/link pattern.
+
+Reference: `css/vantex.css` — `a.vantex-founder-portrait` and `.vantex-engineer-portrait a`.

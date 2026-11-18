@@ -227,8 +227,12 @@ body.vantex-site {
   object-fit: cover;
 }
 
-a.vantex-founder-portrait:hover img {
-  opacity: 0.92;
+/* Linked portrait photos: no hover dim, filter, or scale (see project image-link rule). */
+a.vantex-founder-portrait:hover img,
+.vantex-engineer-portrait a:hover img {
+  opacity: 1;
+  filter: none;
+  transform: none;
 }
 
 .vantex-founder h3 {
@@ -265,25 +269,39 @@ a.vantex-founder-portrait:hover img {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 24px 20px;
   margin-top: 24px;
+  align-items: start;
 }
 
 .vantex-engineer {
   text-align: center;
+  min-width: 0;
 }
 
 .vantex-engineer-portrait {
+  position: relative;
+  display: block;
   line-height: 0;
   border: 1px solid #d0d8e0;
   background: #fff;
   overflow: hidden;
   margin-bottom: 10px;
+  aspect-ratio: 1;
+  width: 100%;
+}
+
+.vantex-engineer-portrait a {
+  position: absolute;
+  inset: 0;
+  display: block;
+  text-decoration: none;
 }
 
 .vantex-engineer-portrait img {
+  position: absolute;
+  inset: 0;
   display: block;
   width: 100%;
-  height: auto;
-  aspect-ratio: 1;
+  height: 100%;
   object-fit: cover;
 }
 
