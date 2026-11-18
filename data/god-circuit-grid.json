@@ -1,7 +1,7 @@
 {
   "gridSize": 10,
   "passageRepeat": 16,
-  "vantexCell": { "row": 7, "col": 7 },
+  "vantexCell": { "row": 8, "col": 8 },
   "vantexHref": "vantex/index.html",
   "gridImage": "assets/frame4.png",
   "externalLinks": [
